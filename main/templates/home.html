@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waifu Card</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto mt-8">
+        <!-- Card Container -->
+        <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+            <!-- Card Header -->
+            <div class="bg-gradient-to-r from-purple-400 to-pink-500 p-4">
+                <h1 class="text-2xl font-semibold text-white">Waifu Card</h1>
+            </div>
+            <!-- Card Body -->
+            <div class="p-4">
+                <!-- Waifu Name -->
+                <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ data.name }}</h2>
+                <!-- Waifu Description -->
+                <p class="text-gray-600">{{ data.description }}</p>
+                <!-- Waifu Stats -->
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Stats:</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Strength: {{ data.strength }}</li>
+                        <li>Speed: {{ data.speed }}</li>
+                        <li>Potential: {{ data.potential }}</li>
+                        <li>Intelligence: {{ data.intelligence }}</li>
+                        <li>Endurance: {{ data.endurance }}</li>
+                    </ul>
+                </div>
+                <!-- Waifu Physical Attributes -->
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold text-gray-800">Physical Attributes:</h3>
+                    <ul class="list-disc list-inside text-gray-600">
+                        <li>Height: {{ data.height }} cm</li>
+                        <li>Weight: {{ data.weight }} kg</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
