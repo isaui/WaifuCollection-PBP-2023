@@ -1,3 +1,5 @@
+https://waifu-card-collection.adaptable.app/
+
 Nama: Isa Citra Buana
 NPM: 2206081465
 
