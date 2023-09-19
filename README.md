@@ -32,7 +32,7 @@ JSON mendukung berbagai bahasa pemrograman. Hampir semua bahasa pemrograman mode
 
 a. Membuat base.html
 <pre>
-~~~
+```plaintext
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,7 @@ a. Membuat base.html
         {% endblock content %}
     </body>
 </html>
-~~~
+```
 </pre>
 -----------------------------------------------------------------------------------------------------
 TUGAS 2
