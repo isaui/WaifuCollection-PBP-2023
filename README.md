@@ -1,5 +1,6 @@
 
 TUGAS 3
+
 deployment: https://waifu-collection.vercel.app/
 
 1.
@@ -522,10 +523,16 @@ b. Get request dalam bentuk json
 ![Gambar 2](json-img/vercel-get-json-2.png)
 ![Gambar 3](json-img/vercel-get-json-3.png)
 c. Get request dalam bentuk xml
-
+![Gambar 1](xml-img/vercel-get-xml-1.png)
+![Gambar 2](xml-img/vercel-get-xml-2.png)
 d. Get request dalam json/:id
-
+![Gambar 1](json-id-img/vercel-get-json-id-1.png)
+![Gambar 2](json-id-img/vercel-get-json-id-2.png)
+![Gambar 3](json-id-img/vercel-get-json-id-3.png)
 e. Get request dalam xml/:id
+![Gambar 1](xml-id-img/vercel-get-xml-id-1.png)
+![Gambar 2](xml-id-img/vercel-get-xml-id-2.png)
+![Gambar 3](xml-id-img/vercel-get-xml-id-3.png)
 
 -----------------------------------------------------------------------------------------------------
 TUGAS 2
