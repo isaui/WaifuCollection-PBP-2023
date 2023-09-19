@@ -4,7 +4,8 @@ deployment: https://waifu-collection.vercel.app/
 
 1. Ketika menggunakan Form Post atau post request, data yang dikirimkan ke server dibungkus dalam body milik request tersebut sehingga data tidak terlihat oleh pihak ketiga. Sementara itu, pada Form Get atau get request, data yang dikirimkan ke server menjadi bagian Head atau kepala dari request tersebut dan data tersebut terlihat di URL yang mana dapat dilihat oleh pihak ketiga. Meskipun keduanya dapat dilakukan untuk hal yang sama, akan tetapi berdasarkan konvensi keduanya memiliki peruntukan yang berbeda. Form Post digunakan untuk mengirim data yang tujuannya untuk memodifikasi database sementara Form Get hanya untuk mendapatkan data yang sifatnya tidak sensitif dan tidak pula mengubah status. Form get cenderung lebih cepat daripada form post karena tidak memiliki overhead alias datanya terpusat di bagian head saja. Selain itu, Get Request dapat di-cache oleh browser sementara  Post Request tidak dapat dicache oleh browser.
 
-2. Perbedaan utama diantara ketiganya sebagai berikut:
+2.
+Perbedaan utama diantara ketiganya sebagai berikut:
 XML
 XML berbentuk markup language dengan tag yang dapat kita buat sendiri. XML menerapkan struktur atau disebut juga struktur hierarkis dalam mengorganisir datanya. XML tidak memiliki tipe data default sehingga mudah diuraikan dan fleksibel untuk dikonversi ke bentuk objek lainnya.
 
@@ -31,7 +32,6 @@ JSON mendukung berbagai bahasa pemrograman. Hampir semua bahasa pemrograman mode
 
 a. Membuat base.html
 <pre>
-\`\`\`html
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +52,6 @@ a. Membuat base.html
         {% endblock content %}
     </body>
 </html>
-\`\`\`
 </pre>
 -----------------------------------------------------------------------------------------------------
 TUGAS 2
