@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Tambah Kartu</title>
+{% endblock meta %}
+
+
+{% block content %}
+<div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
+</div>
+<div class="hidden fixed md:flex justify-end items-end w-screen h-screen -z-10 ">
+    <img class=" w-96 h-auto"src="https://firebasestorage.googleapis.com/v0/b/isa-citra-1691878861005.appspot.com/o/marin-svg.svg?alt=media&token=4260c0db-77af-4631-b748-c1d562032baa" alt="">
+</div>
+<div class=" w-screen  min-h-screen flex lg:-ml-8 justify-center lg:justify-center md:justify-start items-center text-white">
+    <div class= "flex flex-col items-center">
+        <h1 class="mt-6 text-white text-4xl font-bold font-sans"> Tambah <span class="text-[#00A8FF]">Kartu Waifu</span></h1>
+        <div class=" mt-4 md:mt-8 bg-slate-950 px-4 max-w-[95%] mx-2 md:min-w-[36rem] py-2 rounded-md">
+            <form method="POST" action="">
+                {% csrf_token %}
+               
+               <div class=" grid grid-cols-4 gap-4">
+                <div class=" flex-col flex md:col-span-2 col-span-3">
+                    <label for="name" class=" text-white mb-2 text-sm">Nama Waifu</label>
+                    <input for="name" name="name" id="name" class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" placeholder="Nama waifu idamanmu" required>
+                </div>
+                <div class="mb-2 md:col-span-2 col-span-1">
+                    <label for="amount" class="block text-white text-sm mb-2">Amount</label>
+                    <input
+                    required
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        min="1"
+                        max="100"
+                        step="1"
+                        placeholder="Jumlah"
+                        class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    >
+                </div>
+               </div>
+                <div class=" grid-cols-2 md:grid gap-4">
+
+                    <div class=" flex flex-col">
+                        <label class="mt-2  mb-2 text-sm" for="strength">Strength</label>
+                        <div class=" flex justify-between">
+                            <input
+                        required
+                        class =" w-[90%]"
+                        type="range"
+                        id="strength"
+                        name="strength"
+                        min="1"
+                        max="100"
+                        step="1"
+                        value="50"
+                        oninput="updateOutput(this.value, 'strength-value'); "
+                        >
+                        <output for="strength" id="strength-value">50</output>
+                        </div>
+                    </div>
+
+                    <div class=" flex flex-col">
+                        <label class="mt-2  mb-2 text-sm" for="speed">Speed</label>
+                        <div class=" flex justify-between">
+                            <input
+                        required
+                        class =" w-[90%]"
+                        type="range"
+                        id="speed"
+                        name="speed"
+                        min="1"
+                        max="100"
+                        step="1"
+                        value="50"
+                        oninput="updateOutput(this.value, 'speed-value'); "
+                        >
+                        <output for="speed" id="speed-value">50</output>
+                        </div>
+                    </div>
+
+                    <div class=" flex flex-col">
+                        <label class="mt-2  mb-2 text-sm" for="intelligence">Intelligence</label>
+                        <div class=" flex justify-between">
+                            <input
+                        required
+                        class =" w-[90%]"
+                        type="range"
+                        id="intelligence"
+                        name="intelligence"
+                        min="1"
+                        max="100"
+                        step="1"
+                        value="50"
+                        oninput="updateOutput(this.value, 'intelligence-value')"
+                        >
+                        <output for="intelligence" id="intelligence-value">50</output>
+                        </div>
+                    </div>
+
+                    <div class=" flex flex-col">
+                        <label class="mt-2  mb-2 text-sm" for="potential">Potential</label>
+                        <div class=" flex justify-between">
+                            <input
+                        required
+                        class =" w-[90%]"
+                        type="range"
+                        id="potential"
+                        name="potential"
+                        min="1"
+                        max="100"
+                        step="1"
+                        value="50"
+                        oninput="updateOutput(this.value, 'potential-value');"
+                        >
+                        <output for="potential" id="potential-value">50</output>
+                        </div>
+                    </div>
+                    <div class=" flex flex-col">
+                        <label class="mt-2  mb-2 text-sm" for="endurance">Endurance</label>
+                        <div class=" flex justify-between">
+                            <input
+                        required
+                        class =" w-[90%]"
+                        type="range"
+                        id="endurance"
+                        name="endurance"
+                        min="1"
+                        max="100"
+                        step="1"
+                        value="50"
+                        oninput="updateOutput(this.value, 'endurance-value');"
+                        >
+                        <output for="endurance" id="endurance-value">50</output>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="flex flex-col">
+                    <label for="description" class=" text-white mb-2 mt-2 text-sm">Deskripsi</label>
+                    <textarea required id="description" for="description"name="description" class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" placeholder="Deskripsi tentang waifumu"></textarea>
+                </div>
+                <div class=" grid grid-cols-2 gap-4 mt-2">
+                    <div class="flex flex-col">
+                        <label for="weight" class="block text-white text-sm mb-2">Weight (kg)</label>
+                    <input
+                        required
+                        type="number"
+                        id="weight"
+                        name="weight"
+                        min="1"
+                        max="100"
+                        step="0.5"
+                        placeholder="Berat Waifu-mu"
+                        class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    >
+                    </div>
+                    <div class="flex flex-col">
+                        <label for="amount" class="block text-white text-sm mb-2">Height (cm)</label>
+                    <input
+                        required
+                        type="number"
+                        id="height"
+                        name="height"
+                        min="1"
+                        max="200"
+                        step="0.5"
+                        placeholder="Tinggi waifu-mu"
+                        class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    >
+                    </div>
+                </div>
+                <div class="flex mt-4">
+                    <input type="submit" value="Tambah Kartu" class="ml-auto px-4 py-2 text-sm rounded-md bg-slate-900 hover:bg-slate-800">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateOutput(value, elementId) {
+        // Mengambil elemen output
+        var outputElement = document.getElementById(elementId);
+        
+        // Mengubah teks pada elemen output sesuai dengan nilai input
+        outputElement.textContent = value;
+        
+    }
+
+</script>
+{% endblock content %}

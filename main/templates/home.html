@@ -1,53 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Waifu Card</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body class="bg-gray-100">
+    {% extends 'base.html' %}
+
+    {% block meta %}
+    <title>Waifu Card Collection</title>
     
-    <div class="container mx-auto mt-8">
-        <div class="container mx-auto text-base  bg-blue-400 rounded-md mb-2">
-            <h1>Nama Aplikasi: Waifu Card Collection</h1>
-            <h1>Nama: Isa Citra Buana</h1>
-            <h1>NPM: 2206081465</h1>
-            <h1>Kelas: PBP D</h1>
+    {% endblock meta %}
+    
+    {% block content %}
+    <div class="w-screen min-h-screen flex flex-col">
+        <div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
         </div>
-        <!-- Card Container -->
-        <div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-            <!-- Card Header -->
-            <div class="bg-gradient-to-r from-purple-400 to-pink-500 p-4">
-                <h1 class="text-2xl font-semibold text-white">Waifu Card</h1>
+        <a href="{% url 'main:addCard' %}" class="fixed top-2 right-2 text-white px-4 py-2 text-base rounded-md bg-slate-950 hover:bg-teal-900">
+            <h1>Tambah Kartu</h1>
+        </a>
+        <div class="flex flex-col w-full text-base p-4 text-white font-bold ">
+            <div class="  p-4 rounded-md bg-opacity-30 text-base">
+                <h1>Nama Aplikasi: <span class="text-[#00A8FF]">Waifu Card Collection</span></h1>
+            <h1>Nama: <span class="text-[#00A8FF]">Isa Citra Buana</span></h1>
+            <h1>NPM: <span class="text-[#00A8FF]">2206081465</span></h1>
+            <h1>Kelas: <span class="text-[#00A8FF]">PBP D</span></h1>
             </div>
-            <!-- Card Body -->
-            <div class="p-4">
-                <!-- Waifu Name -->
-                <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ data.name }}</h2>
-                <!-- Waifu Description -->
-                <p class="text-gray-600">{{ data.description }}</p>
-                <!-- Waifu Stats -->
-                <div class="mt-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Stats:</h3>
-                    <ul class="list-disc list-inside text-gray-600">
-                        <li>Strength: {{ data.strength }}</li>
-                        <li>Speed: {{ data.speed }}</li>
-                        <li>Potential: {{ data.potential }}</li>
-                        <li>Intelligence: {{ data.intelligence }}</li>
-                        <li>Endurance: {{ data.endurance }}</li>
-                    </ul>
-                </div>
-                <!-- Waifu Physical Attributes -->
-                <div class="mt-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Physical Attributes:</h3>
-                    <ul class="list-disc list-inside text-gray-600">
-                        <li>Height: {{ data.height }} cm</li>
-                        <li>Weight: {{ data.weight }} kg</li>
-                    </ul>
-                </div>
+            <div class=" mx-auto mt-4 text-white font-bold text-base ">
+                <h1>Terdapat <span class="text-[#00A8FF]">{{total}} kartu waifu </span></h1>
             </div>
+
         </div>
+        
+        {% if waifus|length == 0 %}
+            <div class="flex w-full justify-center text-sm md:text-base lg:text-lg text-white font-bold h-full items-center">
+                <h1> Belum ada waifu. Silahkan menambahkan</h1>
+            </div>
+        {% else %}
+            <div class="mb-4  mx-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center ">
+            {% for data in waifus %}
+            <div class="max-w-[24rem] px-4 mx-auto bg-slate-950 rounded-lg shadow-lg mt-2 overflow-hidden">
+                <!-- Card Header -->
+                <div class="px-4 pt-4 flex flex-col items-center">
+                    <h1 class="font-bold ml-auto text-lg text-white">Waifu <span class="text-[#00A8FF]">Card</span></h1>
+                    <div class="border-b-2 mt-2 border-[#00A8FF] w-full mx-2"></div>
+                </div>
+                <!-- Card Body -->
+                <div class="p-4">
+                    <!-- Waifu Name & Amount -->
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="text-lg font-semibold text-[#00A8FF]">{{ data.name }}</h2>
+                        <div class="ml-2 text-white px-3 py-1 text-sm rounded-md bg-teal-950 hover:bg-teal-900">
+                            <h1>{{ data.amount }}</h1>
+                        </div>
+                    </div>
+                    <!-- Waifu Description -->
+                    <p class="text-white text-sm" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ data.description }}</p>
+                    <!-- Waifu Stats -->
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-[#00A8FF]">STATS</h3>
+                        <div class="flex flex-col">
+                            <div class="flex flex-col justify-center">
+                                <label for="strength" class="text-white text-sm">Strength</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-{% if data.strength <= 25 %}green-600{% elif data.strength <= 50 %}yellow-600{% elif data.strength <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.strength }}%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">{{ data.strength }}</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="speed" class="text-white text-sm">Speed</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-{% if data.speed <= 25 %}green-600{% elif data.speed <= 50 %}yellow-600{% elif data.speed <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.speed }}%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">{{ data.speed }}</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="potential" class="text-white text-sm">Potential</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-{% if data.potential <= 25 %}green-600{% elif data.potential <= 50 %}yellow-600{% elif data.potential <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.potential }}%;"></div>
+                                    </div>
+                                <span class="ml-2 text-white">{{ data.potential }}</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="intelligence" class="text-white text-sm">Intelligence</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-{% if data.intelligence <= 25 %}green-600{% elif data.intelligence <= 50 %}yellow-600{% elif data.intelligence <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.intelligence }}%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">{{ data.intelligence }}</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="endurance" class="text-white text-sm">Endurance</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-{% if data.endurance <= 25 %}green-600{% elif data.endurance <= 50 %}yellow-600{% elif data.endurance <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.endurance }}%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">{{ data.endurance }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Waifu Physical Attributes -->
+                    <div class="mt-4 flex flex-col">
+                        <h3 class="text-lg font-semibold text-[#00A8FF]">Physical Attributes</h3>
+                        <div class="flex justify-between items-center text-white">
+                            <h1 class="text-sm">Height</h1>
+                            <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">{{ data.height }} cm</div>
+                        </div>
+                        <div class="flex justify-between items-center text-white space-y-3">
+                            <h1 class="text-sm">Weight</h1>
+                            <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">{{ data.weight }} kg</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+            
+        
     </div>
-</body>
-</html>
+    {% endblock content %}
+
+
