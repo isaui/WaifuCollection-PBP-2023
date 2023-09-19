@@ -31,7 +31,7 @@ JSON mendukung berbagai bahasa pemrograman. Hampir semua bahasa pemrograman mode
 4. Langkah-langkahnya sebagai berikut:
 
 a. Membuat base.html
-<pre>
+
 ```plaintext
 {% load static %}
 <!DOCTYPE html>
@@ -54,7 +54,6 @@ a. Membuat base.html
     </body>
 </html>
 ```
-</pre>
 -----------------------------------------------------------------------------------------------------
 TUGAS 2
 https://waifu-card-collection.adaptable.app/
