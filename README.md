@@ -1,6 +1,59 @@
 
 TUGAS 3
+deployment: https://waifu-collection.vercel.app/
 
+1. Ketika menggunakan Form Post atau post request, data yang dikirimkan ke server dibungkus dalam body milik request tersebut sehingga data tidak terlihat oleh pihak ketiga. Sementara itu, pada Form Get atau get request, data yang dikirimkan ke server menjadi bagian Head atau kepala dari request tersebut dan data tersebut terlihat di URL yang mana dapat dilihat oleh pihak ketiga. Meskipun keduanya dapat dilakukan untuk hal yang sama, akan tetapi berdasarkan konvensi keduanya memiliki peruntukan yang berbeda. Form Post digunakan untuk mengirim data yang tujuannya untuk memodifikasi database sementara Form Get hanya untuk mendapatkan data yang sifatnya tidak sensitif dan tidak pula mengubah status. Form get cenderung lebih cepat daripada form post karena tidak memiliki overhead alias datanya terpusat di bagian head saja. Selain itu, Get Request dapat di-cache oleh browser sementara  Post Request tidak dapat dicache oleh browser.
+
+2. Perbedaan utama diantara ketiganya sebagai berikut:
+XML
+XML berbentuk markup language dengan tag yang dapat kita buat sendiri. XML menerapkan struktur atau disebut juga struktur hierarkis dalam mengorganisir datanya. XML tidak memiliki tipe data default sehingga mudah diuraikan dan fleksibel untuk dikonversi ke bentuk objek lainnya.
+
+JSON
+JSON merepresentasikan data dalam bentuk objek javascript yang mirip seperti map atau dicitionary. JSON mengorganisir datanya dengan menggunakan value-key pair atau dengan kata lain menggunakan struktur map. Tidak hanya itu JSON juga memiliki ukuran file yang lebih kecil dari format data lain sehingga hal ini menyebabkan JSON memiliki performa yang lebih baik daripada XML. Meskipun tidak se-fleksibel XML tetapi JSON sendiri sudah cukup mendukung banyak struktur data maupun objek.
+
+HTML
+Html sebenarnya merupakan markup language yang lebih diperuntukkan untuk membuat tampilan dan konten dari suatu website daripada menjadi format pengiriman data. Tag pada html juga sudah default dari sananya dan kita tidak bisa membuat custom tag sendiri.
+
+3.
+JSON memiliki Sintaks yang Mudah Dibaca
+JSON memiliki sintaknya yang ringkas dan mudah dibaca oleh manusia. JSON menggunakan format objek dengan pasangan "kunci-nilai" yang intuitif dan mudah dinterpretasikan oleh manusia.
+
+Mudah Diproses
+JSON mudah diproses oleh komputer. Kebanyakan bahasa pemrograman modern memiliki dukungan yang baik untuk parsing dan menghasilkan data dalam format JSON. Ini membuatnya mudah untuk mengubah data dalam format JSON menjadi objek atau struktur data yang dapat digunakan oleh aplikasi.
+
+Mendukung Tipe Data yang Umum
+JSON mendukung tipe data umum seperti string, angka, boolean, objek, dan array. Ini mencakup sebagian besar tipe data yang diperlukan dalam pertukaran data.
+
+Kompabilitas Tinggi
+JSON mendukung berbagai bahasa pemrograman. Hampir semua bahasa pemrograman modern memiliki dukungan untuk mengurai (parsing) dan menghasilkan data dalam format JSON. Ini membuatnya sangat cocok untuk berkomunikasi antara berbagai aplikasi dan sistem yang ditulis dalam bahasa yang berbeda.
+
+4. Langkah-langkahnya sebagai berikut:
+
+a. Membuat base.html
+<pre>
+\`\`\`html
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+        {% block meta %}
+        {% endblock meta %}
+    </head>
+
+
+    <body class="bg-slate-900">
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
+\`\`\`
+</pre>
 -----------------------------------------------------------------------------------------------------
 TUGAS 2
 https://waifu-card-collection.adaptable.app/
