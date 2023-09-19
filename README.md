@@ -1,3 +1,8 @@
+
+TUGAS 3
+
+-----------------------------------------------------------------------------------------------------
+TUGAS 2
 https://waifu-card-collection.adaptable.app/
 
 Nama: Isa Citra Buana
