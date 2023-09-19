@@ -501,6 +501,24 @@ Buat template addCard.html dengan melakukan inheritance terhadap base.html . Sel
 </script>
 {% endblock content %}
 ```
+5.
+Menampilkan screenshot postman:
+a. Get request dalam bentuk html
+![Gambar 1](html-img/vercel-get-main-1.png)
+![Gambar 2](html-img/vercel-get-main-2.png)
+![Gambar 3](html-img/vercel-get-main-3.png)
+![Gambar 4](html-img/vercel-get-main-4.png)
+![Gambar 5](html-img/vercel-get-main-5.png)
+![Gambar 6](html-img/vercel-get-main-6.png)
+![Gambar 7](html-img/vercel-get-main-7.png)
+![Gambar 8](html-img/vercel-get-main-8.png)
+![Gambar 9](html-img/vercel-get-main-9.png)
+![Gambar 10](html-img/vercel-get-main-10.png)
+![Gambar 11](html-img/vercel-get-main-11.png)
+![Gambar 12](html-img/vercel-get-main-12.png)
+
+b. Get request dalam bentuk json
+
 -----------------------------------------------------------------------------------------------------
 TUGAS 2
 https://waifu-card-collection.adaptable.app/
