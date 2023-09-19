@@ -518,6 +518,14 @@ a. Get request dalam bentuk html
 ![Gambar 12](html-img/vercel-get-main-12.png)
 
 b. Get request dalam bentuk json
+![Gambar 1](json-img/vercel-get-json-1.png)
+![Gambar 2](json-img/vercel-get-json-2.png)
+![Gambar 3](json-img/vercel-get-json-3.png)
+c. Get request dalam bentuk xml
+
+d. Get request dalam json/:id
+
+e. Get request dalam xml/:id
 
 -----------------------------------------------------------------------------------------------------
 TUGAS 2
