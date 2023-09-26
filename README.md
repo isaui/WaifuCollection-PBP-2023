@@ -1,3 +1,35 @@
+TUGAS 4
+
+1.
+User Creation Form adalah formulir bawaan yang disediakan oleh Django dalam membuat instance dari User. User Creation Form secara default memiliki field username, password (password1), dan password confirmation (password2).  
+
+Kelebihan:
+
+a. UserCreationForm adalah formulir bawaan yang siap pakai untuk melakukan aktivitas registrasi user, sehingga kita tidak perlu menulis formulir pendaftaran pengguna dari awal.
+
+b. UserCreationForm terintegrasi dengan baik dengan sistem otentikasi Django. Ini memungkinkan kita untuk dengan mudah menyimpan informasi pengguna yang terdaftar dalam database dan melakukan otentikasi dengan mereka.
+
+c. Django UserCreationForm dilengkapi dengan validasi bawaan yang berfungsi untuk memeriksa data yang dimasukkan oleh pengguna dalam proses pendaftaran. Validasi ini dirancang untuk memastikan bahwa data yang diberikan oleh pengguna sesuai dengan aturan yang telah ditetapkan. Hal tersebut juga membuat kita setidaknya tidak memiliki kewajiban untuk membuat validasi manual begitu mendapatkan data dari Post Request.
+
+d. Formulir ini secara otomatis menyinkronkan data yang dimasukkan oleh pengguna, meverifikasi data, dan membuat objek User dalam database.
+
+Kekurangan:
+
+a. UserCreationForm tidak memiliki validasi yang responsif di sisi klien, yang berarti pengguna harus menunggu hingga data dikirimkan ke server sebelum mereka mendapatkan umpan balik tentang apakah input mereka valid atau tidak. Hal ini tentu saja dapat mengurangi _user experience_ bagi klien, terutama pada aplikasi dan web yang memerlukan validasi real-time.
+
+b.  Desain default dari UserCreationForm terlihat begitu sederhana dan bisa dikatakan buruk. Untuk memperbaiki desain tersebut, ujung-ujungnya nanti kita harus membuat kotak, label, dan elemen input secara manual yang kemudian dipadukan dengan kelas kelas CSS. Hal tersebut bisa dibilang tidak beda jauh dengan membuat form pendaftaran secara manual.
+
+c.  UserCreationForm memiliki field bawaan yang terbatas, yaitu username, password1, dan password2. Jika kita memerlukan tambahan field maka kita perlu membuatnya secara manual dan secara terpisah mengambil field tambahan tersebut dari body request. Ada alternatif lain yaitu dengan membuat kelas form yang meng-_extends_ UserCreationForm.
+
+d.  UserCreationForm sangat terkait erat dengan sistem otentikasi bawaan Django. Jika kita ingin menggunakan otentikasi yang berbeda atau khusus, maka UserCreationForm bukan pilihan yang tepat.
+
+e.  Formulir ini menyediakan validasi bawaan dan perlindungan melalui csrf token, tetapi tidak termasuk fitur-fitur keamanan tambahan seperti CAPTCHA yang dapat membantu melindungi form dari serangan bot.
+
+
+2. Dalam konteks Django, autentikasi adalah proses untuk memverifikasi identitas klien. Contohnya adalah dengan login, maka sistem mengetahui bahwa klien tersebut adalah pemilik akses yang sah atau tidak. Sementara itu, otorisasi adalah proses untuk mengontrol hak akses klien setelah klien berhasil diautentikasi. Dalam hal ini, contohnya adalah  kita sebagai user dapat memodifikasi objek yang kita buat, akan tetapi kita tidak diberikan izin untuk memodifikasi objek yang dibuat oleh orang lain. Hal tersebut berbeda lagi dengan admin, admin dapat memodifikasi semua benda yang dibuat oleh siapapun. Autentikasi dan otorisasi penting untuk dilakukan karena dapat melindungi integritas data, melindungi data sensitif, dan menghindari penyalahgunaan sistem.
+
+3. Cookie adalah  data berukuran kecil berisi informasi non-sensitif yang disimpan di sisi klien (misal web peramban). Cookie  di-generate oleh server dan digunakan untuk meningkatkan user-experience klien. Dengan kata lain, cookie digunakan untuk mempersonalisasi klien tersebut.
+
 
 TUGAS 3
 
