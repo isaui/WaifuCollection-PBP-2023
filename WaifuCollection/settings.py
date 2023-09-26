@@ -77,14 +77,15 @@ WSGI_APPLICATION = 'WaifuCollection.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'MAMkrSMQ2rmls2T1Jx2s',
-        'HOST': 'containers-us-west-144.railway.app',
-        'PORT': '7451',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'waifucollectionmysql_directlyto',
+        'USER': 'waifucollectionmysql_directlyto',
+        'PASSWORD': '5ee8014ebf363e4fed672c2334e3cb40ff7f85af',
+        'HOST': '95w.h.filess.io',
+        'PORT': '3307',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

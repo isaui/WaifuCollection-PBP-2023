@@ -1,16 +1,32 @@
     {% extends 'base.html' %}
 
+
     {% block meta %}
     <title>Waifu Card Collection</title>
     
     {% endblock meta %}
     
     {% block content %}
-    <div class="w-screen min-h-screen flex flex-col">
+    
+<div id="loadingOverlay" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+   
+    <div  role="status" class="bg-white bg-opacity-50 rounded-lg p-4 shadow-lg flex justify-center items-center">
+        <svg aria-hidden="true" class="w-10 h-10  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+        </svg>
+    </div>
+</div>
+
+    <div class="w-screen min-h-screen overflow-y-auto flex flex-col">
+        
         <div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
         </div>
-        <a href="{% url 'main:addCard' %}" class="fixed top-2 right-2 text-white px-4 py-2 text-base rounded-md bg-slate-950 hover:bg-teal-900">
-            <h1>Tambah Kartu</h1>
+        <a href="{% url 'main:logout' %}" onclick="onLogout()" class="fixed top-2 right-2 text-white px-4 py-2 text-base rounded-md bg-slate-950 hover:bg-teal-900">
+            <h1>Logout</h1>
+        </a>
+        <a href="{% url 'main:addCard' %}" onclick="onClickAdd()" class=" z-20 fixed bottom-24 right-12 md:right-24 bg-[#00A8FF] hover:bg-teal-700 text-black hover:text-white  rounded-full md:w-16 md:h-16 w-12 h-12 flex items-center justify-center">
+            <h1 class="text-4xl font-bold mb-1">+</h1>
         </a>
         <div class="flex flex-col w-full text-base p-4 text-white font-bold ">
             <div class="  p-4 rounded-md bg-opacity-30 text-base">
@@ -19,27 +35,43 @@
             <h1>NPM: <span class="text-[#00A8FF]">2206081465</span></h1>
             <h1>Kelas: <span class="text-[#00A8FF]">PBP D</span></h1>
             </div>
-            <div class=" mx-auto mt-4 text-white font-bold text-base ">
+            <div class="flex w-full mb-2 justify-center text-base text-white font-bold h-full items-center">
+                <h1> <span class="text-[#00A8FF]">{{username}}</span> terakhir login pada {{last_login}}</h1>
+            </div>
+            <div class=" mx-auto  text-white font-bold text-base ">
                 <h1>Terdapat <span class="text-[#00A8FF]">{{total}} kartu waifu </span></h1>
             </div>
 
         </div>
+        
         
         {% if waifus|length == 0 %}
             <div class="flex w-full justify-center text-sm md:text-base lg:text-lg text-white font-bold h-full items-center">
                 <h1> Belum ada waifu. Silahkan menambahkan</h1>
             </div>
         {% else %}
-            <div class="mb-4  mx-auto gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center ">
+            <div class="mb-4  mx-auto gap-4 grid grid-cols-1 {% if waifus|length == 1 %}md:grid-cols-1 lg:grid-cols-1{% elif waifus|length == 2 %}md:grid-cols-2 lg:grid-cols-2{% else %}md:grid-cols-2 lg:grid-cols-3{% endif %} justify-center ">
             {% for data in waifus %}
-            <div class="max-w-[24rem] w-[24rem] px-4 mx-auto bg-slate-950 rounded-lg shadow-lg mt-2 overflow-hidden">
+            <div class="max-w-[24rem] min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto bg-slate-950 rounded-lg shadow-lg mt-2 overflow-hidden">
                 <!-- Card Header -->
-                <div class="px-4 pt-4 flex flex-col items-center">
-                    <h1 class="font-bold ml-auto text-lg text-white">Waifu <span class="text-[#00A8FF]">Card</span></h1>
-                    <div class="border-b-2 mt-2 border-[#00A8FF] w-full mx-2"></div>
+                
+                <div class="relative z-10 flex justify-between items-center w-full">
+                    <div class="px-4 pt-4 flex flex-col items-center">
+                        <h1 class="font-bold ml-auto text-lg text-white">Waifu <span class="text-[#00A8FF]">Card</span></h1>
+                        <div class="border-b- mt-2 border-[#00A8FF] w-full mx-2"></div>
+                    </div>
+                    <div class="pt-4 flex items-center justify-end space-x-2">
+                        <button onclick="changeAmount({{data.id}}, -1)" class="fas fa-minus w-8 h-8" style="color: white;">
+                        </button>
+                        <button onclick="changeAmount({{data.id}}, 1)" class="fas fa-plus w-8 h-8" style="color: white;">
+                        </button>
+                        <button onclick="deleteCard({{data.id}})" class="fas fa-trash w-8 h-8" style="color: red;">
+                        </button>
+                    </div>
+                    
                 </div>
                 <!-- Card Body -->
-                <div class="p-4">
+                <div class="relative z-10 p-4">
                     <!-- Waifu Name & Amount -->
                     <div class="flex justify-between items-center mb-2">
                         <h2 class="text-lg font-semibold text-[#00A8FF]">{{ data.name }}</h2>
@@ -113,6 +145,40 @@
                         </div>
                     </div>
                 </div>
+                <div id="card-rank-{{data.id}}" class="z-0   w-full absolute font-bold text-[#00A8FF] opacity-30 inset-0 flex items-center justify-center text-[24rem]">
+                    A
+                </div>
+                <script>
+                    function calculateRank(strength, speed, intelligence, potential, endurance) {
+                         // Menghitung nilai total stats
+                        var totalStats = (strength + speed + intelligence + potential + endurance) / 5;
+
+                        // Menentukan kisaran rank berdasarkan total stats
+                        if (totalStats >= 90) {
+                            return 'S';
+                        } else if (totalStats >= 80) {
+                            return 'A';
+                        } else if (totalStats >= 70) {
+                            return 'B';
+                        } else if (totalStats >= 60) {
+                            return 'C';
+                        } else if (totalStats >= 50) {
+                            return 'D';
+                        } else {
+                            return 'E';
+                        }
+                    }  
+                    var element = document.getElementById("card-rank-{{ data.id }}");
+                    var strength = {{ data.strength }};
+                    var speed = {{ data.speed }};
+                    var intelligence = {{ data.intelligence }};
+                    var potential = {{ data.potential }};
+                    var endurance = {{ data.endurance }};
+                    if(element){
+                        console.log('here')
+                        element.innerText = calculateRank(strength, speed, intelligence, potential, endurance)
+                    }
+                </script>
             </div>
             {% endfor %}
         </div>
@@ -120,6 +186,95 @@
             
         
     </div>
+
+    <script>
+
+        const myElement = document.getElementById('loadingOverlay');
+
+
+        window.addEventListener('load', function() {
+            myElement.style.display = 'none';
+        });
+        function onLogout (){
+        myElement.style.display = 'flex';
+        }
+        function onClickAdd(){
+            myElement.style.display = 'flex';
+        }
+        function deleteCard(id){
+            myElement.style.display = 'flex';
+            const csrftoken = getCookie('csrftoken');
+            const formData = new FormData();
+            formData.append('waifu_card_id', id);
+            fetch('/main/deleteCard/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            body: formData
+        })
+        .then(response => {
+            if (response.status === 200) {
+                // Handle berhasil
+               // myElement.style.display = 'none';
+                console.log('Perubahan jumlah berhasil');
+                console.log(response)
+                window.location.href = '/main/';
+            } else {
+                // Handle kesalahan jika diperlukan
+                //myElement.style.display = 'none';
+                console.error('Terjadi kesalahan:', response.statusText);
+                myElement.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            //myElement.style.display = 'none';
+            console.error('Terjadi kesalahan:', error);
+            myElement.style.display = 'none';
+        });
+        }
+        function changeAmount(id, quantity){
+            myElement.style.display = 'flex';
+            console.log("yeahahaha")
+            const csrftoken = getCookie('csrftoken');
+            const formData = new FormData();
+            formData.append('waifu_card_id', id);
+            formData.append('quantity', quantity);
+            fetch('/main/changeAmount/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            body: formData
+        })
+        .then(response => {
+            if (response.status === 200) {
+                // Handle berhasil
+               // myElement.style.display = 'none';
+                console.log('Perubahan jumlah berhasil');
+                console.log(response)
+                window.location.href = '/main/';
+            } else {
+                // Handle kesalahan jika diperlukan
+                //myElement.style.display = 'none';
+                console.error('Terjadi kesalahan:', response.statusText);
+                myElement.style.display = 'none';
+            }
+        })
+        .catch(error => {
+            //myElement.style.display = 'none';
+            console.error('Terjadi kesalahan:', error);
+            myElement.style.display = 'none';
+        });
+        }
+
+        function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+         
+    </script>
     {% endblock content %}
 
 
