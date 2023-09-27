@@ -65,9 +65,12 @@ def home(request):
     waifus = Item.objects.filter(user=request.user)
     user = request.user
     card_total = 0
+    last_login = request.COOKIES['last_login']
+    if last_login is None:
+        last_login = "Belum ada data"
     for waifu in waifus:
         card_total += waifu.amount
-    return render(request, "home.html", {'waifus': waifus, 'username': user.username, 'total':card_total, 'last_login': request.COOKIES['last_login'],})
+    return render(request, "home.html", {'waifus': waifus, 'username': user.username, 'total':card_total, 'last_login': last_login,})
 
 
 

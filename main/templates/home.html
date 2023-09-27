@@ -235,7 +235,6 @@
         }
         function changeAmount(id, quantity){
             myElement.style.display = 'flex';
-            console.log("yeahahaha")
             const csrftoken = getCookie('csrftoken');
             const formData = new FormData();
             formData.append('waifu_card_id', id);
@@ -249,20 +248,13 @@
         })
         .then(response => {
             if (response.status === 200) {
-                // Handle berhasil
-               // myElement.style.display = 'none';
-                console.log('Perubahan jumlah berhasil');
-                console.log(response)
                 window.location.href = '/main/';
             } else {
-                // Handle kesalahan jika diperlukan
-                //myElement.style.display = 'none';
                 console.error('Terjadi kesalahan:', response.statusText);
                 myElement.style.display = 'none';
             }
         })
         .catch(error => {
-            //myElement.style.display = 'none';
             console.error('Terjadi kesalahan:', error);
             myElement.style.display = 'none';
         });
