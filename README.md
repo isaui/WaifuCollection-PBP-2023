@@ -28,8 +28,245 @@ e.  Formulir ini menyediakan validasi bawaan dan perlindungan melalui csrf token
 
 2. Dalam konteks Django, autentikasi adalah proses untuk memverifikasi identitas klien. Contohnya adalah dengan login, maka sistem mengetahui bahwa klien tersebut adalah pemilik akses yang sah atau tidak. Sementara itu, otorisasi adalah proses untuk mengontrol hak akses klien setelah klien berhasil diautentikasi. Dalam hal ini, contohnya adalah  kita sebagai user dapat memodifikasi objek yang kita buat, akan tetapi kita tidak diberikan izin untuk memodifikasi objek yang dibuat oleh orang lain. Hal tersebut berbeda lagi dengan admin, admin dapat memodifikasi semua benda yang dibuat oleh siapapun. Autentikasi dan otorisasi penting untuk dilakukan karena dapat melindungi integritas data, melindungi data sensitif, dan menghindari penyalahgunaan sistem.
 
-3. Cookie adalah  data berukuran kecil berisi informasi non-sensitif yang disimpan di sisi klien (misal web peramban). Cookie  di-generate oleh server dan digunakan untuk meningkatkan user-experience klien. Dengan kata lain, cookie digunakan untuk mempersonalisasi klien tersebut.
+3. Cookie adalah  data berukuran kecil yang berbentuk teks yang berisi informasi non-sensitif yang disimpan di sisi klien (misal web peramban). Cookie  di-generate oleh server dan digunakan untuk meningkatkan user-experience klien. Dengan kata lain, cookie digunakan untuk mempersonalisasi klien tersebut. Django menggunakan cookies untuk mengelola data sesi pengguna dengan cara menyimpan sesi tersebut di dalam cookie secara default. Hal tersebut dilakukan dengan menuliskan hal ini di dalam settings.py
+`SESSION_ENGINE = "django.contrib.sessions.backends.cookie"`
 
+4. Penggunaan cookies dalam pengembangan web tidak selalu aman secara default karena selalu ada risiko potensial yang perlu diwaspadai.
+
+a. Resiko pencurian cookie
+
+Pencurian cookie dapat memungkinkan penyerang untuk mengakses akun pengguna dengan mencuri sesi yang aktif. Hal tersebut mengakibatkan akses yang tidak sah ke data pribadi dan informasi sensitif. Pencurian cookie juga dapat mengancam privasi pengguna dengan memberikan penyerang akses ke riwayat penelusuran, preferensi, dan aktivitas online pengguna, yang dapat digunakan untuk hal-hal yang tidak sah. Salah satu metode untuk mencuri cookie adalah dengan menggunakan teknik XSS. Dalam teknik tersebut, penyerang memasukkan skrip berbahaya ke dalam halaman web yang dilihat oleh pengguna. Skrip ini dapat digunakan untuk mencuri cookie pengguna yang saat itu sedang digunakan untuk sesi web yang aktif.
+
+b. Tracking dan Profiling
+
+Penggunaan cookie oleh perusahaan periklanan dan analitik dapat mengumpulkan data perilaku pengguna secara luas untuk profil dan penargetan iklan. Ini bisa menjadi risiko privasi jika data tersebut digunakan tanpa izin atau disalahgunakan.
+
+5.
+a. Mengimplementasikan fungsi registrasi, login, dan logout
+
+Kita perlu membuat fungsi-fungsi tersebut di dalam views.py. Untuk fungsi registrasi dan login kita perlu memikirkan jenis request yang masuk, apakah GET request atau POST request. Apabila yang masuk adalah GET request maka kita harus merender tampilan. Sementara jika yang masuk adalah POST request maka kita harus melakukan autentikasi dengan data yang dikirimkan melalui POST request tersebut. Sementara untuk fungsi logout, kita hanya perlu memikirkan cara kita meng-handle GET request yang masuk, yaitu dengan cara melakukan logout terhadap request.user.
+
+### views.py
+```
+...
+def register(request):
+    form = UserCreationForm()
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        print(form.is_valid())
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your account has been successfully created!')
+            return redirect('main:login')
+    context = {'form': form}
+    return render(request, 'register.html', context)
+
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:home")) 
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+    context = {}
+    return render(request, 'login.html', context)
+
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
+...
+```
+Selanjutnya kita perlu mendaftarkan routing untuk mengakses fungsi-fungsi tersebut.
+### urls.py
+```
+...
+path('register/', register, name='register'), 
+path('login/', login_user, name='login'),
+path('logout/', logout_user, name="logout"),
+...
+```
+Kemudian kita buat template yang bersesuaian di folder templates yang berada di directory main
+### register.html
+```
+{% extends 'base.html' %}
+{% block meta %}
+    <title>Register</title>
+    
+{% endblock meta %}
+{% block content %}
+<div id="loadingOverlay" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+   
+    <div  role="status" class="bg-white bg-opacity-50 rounded-lg p-4 shadow-lg flex justify-center items-center">
+        <svg aria-hidden="true" class="w-10 h-10  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+        </svg>
+    </div>
+</div>
+<div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
+</div>
+
+<div class=" min-h-screen overflow-y-auto flex flex-col justify-center items-center w-screen">
+    <div class="mb-4 flex font-bold w-full text-white lg:text-4xl md:text-2xl text-xl">
+        <h1 class=" mx-auto">Buat Akun <span class="text-[#00A8FF]">Waifu Baru</span> </h1>
+    </div>
+    <form  class="flex flex-col min-h-[28rem] bg-slate-950 px-4 py-2 rounded-md text-white max-w-[95%] min-w-[20rem] md:w-[28rem] w-[24rem]" autocomplete="off" method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="{{ form.username.id_for_label }}" class="block text-white text-sm  mb-2">Username</label>
+            <input type="text" name="username"  class=" bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Masukkan nama kamu" id="{{ form.username.id_for_label }}">
+            <p class="mt-2 text-[#00A8FF] text-xs text-justify">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.password1.id_for_label }}" class="block text-white text-sm  mb-2">Password</label>
+            <input type="password" name="password1" class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Buat password" id="{{ form.password1.id_for_label }}">
+            <p  class="mt-2 text-[#00A8FF] text-xs text-justify">Your password can`t be too similar to your other personal information.
+                Your password must contain at least 8 characters.
+                Your password can`t be a commonly used password.
+                Your password can`t be entirely numeric.</p>
+        </div>
+        <div class="mb-4">
+            <label for="{{ form.password2.id_for_label }}" class="block text-white text-sm  mb-2">Confirm Password</label>
+            <input type="password" name="password2" class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"placeholder="Ulangi password" id="{{ form.password2.id_for_label }}">
+            <p class="mt-2 text-[#00A8FF] text-xs text-justify">Enter the same password as before, for verification.</p>
+        </div>
+        <div class="mb-4">
+            <h1 class="block text-white text-sm  mb-2">Sudah punya akun? <span><a href="{% url 'main:login' %}" class="font-bold text-[#00A8FF]">Login</a></span></h1>
+        </div>  
+        <div class="mb-4 mt-auto">
+            <hr class=" border-2 rounded-md border-[#00A8FF]">
+        </div>
+        <div class="mb-2 w-full   text-sm flex">
+            <button onclick="onSubmit()" class="ml-auto px-4 py-2 bg-[#00A8FF] text-black hover:text-white hover:bg-blue-900 rounded-sm"type="submit">Buat Akun</button>
+        </div>
+        
+    </form>
+    
+</div>
+<script>
+const myElement = document.getElementById('loadingOverlay');
+window.addEventListener('load', function() {
+    myElement.style.display = 'none';
+});
+function onSubmit (){
+myElement.style.display = 'flex';
+setTimeout(function() {
+    myElement.style.display = 'none';
+}, 5000);
+}
+</script>
+{% endblock content %}
+```
+### login.html
+```
+{% extends 'base.html' %}
+{% block meta %}
+    <title>Masuk ke Akun Waifu</title>
+    
+{% endblock meta %}
+{% block content %}
+<div id="loadingOverlay" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+   
+    <div  role="status" class="bg-white bg-opacity-50 rounded-lg p-4 shadow-lg flex justify-center items-center">
+        <svg aria-hidden="true" class="w-10 h-10  text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+        </svg>
+    </div>
+</div>
+<div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
+</div>
+
+<div class=" min-h-screen overflow-y-auto flex flex-col justify-center items-center w-screen">
+    <div class="mb-4 flex font-bold w-full text-white lg:text-4xl md:text-2xl text-xl">
+        <h1 class=" mx-auto">Login Akun <span class="text-[#00A8FF]">Waifu Kamu</span> </h1>
+    </div>
+    <form  class="flex flex-col min-h-[28rem] bg-slate-950 px-4 py-2 rounded-md text-white max-w-[95%] min-w-[18rem] md:w-[28rem] w-[24rem]" autocomplete="off" method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="username" class="block text-white text-sm  mb-2">Username</label>
+            <input autocomplete="off" required type="text" name="username"  class=" bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Masukkan nama kamu" id="username">
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block text-white text-sm  mb-2">Password</label>
+            <input autocomplete="off" required type="password" name="password" class="bg-slate-800 focus:border  text-white  text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Buat password" id="password">
+        </div>
+        <div class="mb-4">
+            <h1 class="block text-white text-sm  mb-2">Belum punya akun? <span><a href="{% url 'main:register' %}" class="font-bold text-[#00A8FF]">Register</a></span></h1>
+        </div>  
+        <div class="mb-4 mt-auto">
+            <hr class=" border-2 rounded-md border-[#00A8FF]">
+        </div>
+        <div class="mb-2 w-full   text-sm flex">
+            <button onclick="onSubmit()" class="ml-auto px-4 py-2 bg-[#00A8FF] text-black hover:text-white hover:bg-blue-900 rounded-sm"type="submit">Masuk</button>
+        </div>
+        
+    </form>
+</div>
+<script>
+const myElement = document.getElementById('loadingOverlay');
+
+
+window.addEventListener('load', function() {
+    myElement.style.display = 'none';
+});
+function onSubmit (){
+myElement.style.display = 'flex';
+setTimeout(function() {
+    myElement.style.display = 'none';
+}, 5000);
+}
+</script>
+{% endblock content %}
+```
+
+b. Kemudian kita registrasikan dua user dan kemudian untuk masing masing user, kita tambahkan tiga objek kartu.
+
+c. Untuk menghubungkan User dengan Item maka kita perlu memperbarui field model Item dengan menambahkan `user = models.ForeignKey(User, on_delete=models.CASCADE)`
+### models.py
+```
+...
+class Item(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name= models.CharField(max_length=255)
+    amount= models.IntegerField(validators=[MinValueValidator(0)])
+    description=models.TextField()
+    strength = models.PositiveIntegerField()
+    speed = models.PositiveIntegerField() 
+    potential = models.PositiveIntegerField() 
+    intelligence = models.PositiveIntegerField() 
+    endurance = models.PositiveIntegerField() 
+    height = models.DecimalField(max_digits=5, decimal_places=2)
+    weight = models.DecimalField(max_digits=5, decimal_places=2)
+...
+```
+Selanjutnya kita perlu memfilter kartu dengan user yang sesuai
+### views.py
+```
+...
+@login_required(login_url='/main/login')
+def home(request):
+    waifus = Item.objects.filter(user=request.user)
+    user = request.user
+    card_total = 0
+    last_login = request.COOKIES['last_login']
+    if last_login is None:
+        last_login = "Belum ada data"
+    for waifu in waifus:
+        card_total += waifu.amount
+    return render(request, "home.html", {'waifus': waifus, 'username': user.username, 'total':card_total, 'last_login': last_login,})
+
+...
+```
 
 TUGAS 3
 
