@@ -1,9 +1,13 @@
 Nama: Isa Citra Buana
+
 NPM: 2206081465
+
 Kelas: PBP D
 
 TUGAS 4
+
 deployment: https://waifu-collection.vercel.app/
+
 1.
 User Creation Form adalah formulir bawaan yang disediakan oleh Django dalam membuat instance dari User. User Creation Form secara default memiliki field username, password (password1), dan password confirmation (password2).  
 
