@@ -249,7 +249,7 @@ class Item(models.Model):
     weight = models.DecimalField(max_digits=5, decimal_places=2)
 ...
 ```
-Selanjutnya kita perlu memfilter kartu dengan user yang sesuai
+Selanjutnya kita perlu memfilter kartu dengan user yang sesuai dengan kode `waifus = Item.objects.filter(user=request.user)` pada fungsi home.
 ### views.py
 ```
 ...
@@ -265,6 +265,54 @@ def home(request):
         card_total += waifu.amount
     return render(request, "home.html", {'waifus': waifus, 'username': user.username, 'total':card_total, 'last_login': last_login,})
 
+...
+```
+
+d. Untuk menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi, kita perlu menambahkan cookie.
+Hal tersebut dapat kita lakukan ketika user berhasil diautentikasi saat login. Tambahkan kode ini `response.set_cookie('last_login', str(datetime.datetime.now()))` pada fungsi login_user.
+### views.py
+```
+...
+def login_user(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:home")) 
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            messages.info(request, 'Sorry, incorrect username or password. Please try again.')
+    context = {}
+    return render(request, 'login.html', context)
+...
+```
+Selanjutnya, pada halaman utama, kita perlu mengambil cookie tersebut dengan menambahkan kode `last_login = request.COOKIES.get('last_login', 'Tidak ada data')` pada fungsi home
+### views.py
+```
+...
+@login_required(login_url='/main/login')
+def home(request):
+    waifus = Item.objects.filter(user=request.user)
+    user = request.user
+    card_total = 0
+    last_login = request.COOKIES.get('last_login', 'Tidak ada data') #mengambil cookie
+    for waifu in waifus:
+        card_total += waifu.amount
+    return render(request, "home.html", {'waifus': waifus, 'username': user.username, 'total':card_total, 'last_login': last_login,})
+...
+```
+Kemudian menghapus cookie tersebut ketika kita logout dengan menambahkan kode `response.delete_cookie('last_login')` pada fungsi logout_user
+### views.py
+```
+...
+def logout_user(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse('main:login'))
+    response.delete_cookie('last_login')
+    return response
 ...
 ```
 
