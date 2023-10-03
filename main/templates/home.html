@@ -196,10 +196,16 @@
             myElement.style.display = 'none';
         });
         function onLogout (){
-        myElement.style.display = 'flex';
+            myElement.style.display = 'flex';
+            setTimeout(function() {
+                myElement.style.display = 'none';
+            }, 5000);
         }
         function onClickAdd(){
             myElement.style.display = 'flex';
+            setTimeout(function() {
+            myElement.style.display = 'none';
+        }, 5000);
         }
         function deleteCard(id){
             myElement.style.display = 'flex';
