@@ -22,7 +22,7 @@
         
         <div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
         </div>
-        <a href="{% url 'main:logout' %}" onclick="onLogout()" class="fixed top-2 right-2 text-white px-4 py-2 text-base rounded-md bg-slate-950 hover:bg-teal-900">
+        <a href="{% url 'main:logout' %}" onclick="onLogout()" class="fixed z-20 top-2 right-2 text-white px-4 py-2 text-base rounded-md bg-slate-950 hover:bg-teal-900">
             <h1>Logout</h1>
         </a>
         <a href="{% url 'main:addCard' %}" onclick="onClickAdd()" class=" z-20 fixed bottom-24 right-12 md:right-24 bg-[#00A8FF] hover:bg-teal-700 text-black hover:text-white  rounded-full md:w-16 md:h-16 w-12 h-12 flex items-center justify-center">
@@ -52,7 +52,7 @@
         {% else %}
             <div class="mb-4  mx-auto gap-4 grid grid-cols-1 {% if waifus|length == 1 %}md:grid-cols-1 lg:grid-cols-1{% elif waifus|length == 2 %}md:grid-cols-2 lg:grid-cols-2{% else %}md:grid-cols-2 lg:grid-cols-3{% endif %} justify-center ">
             {% for data in waifus %}
-            <div class="max-w-[24rem] min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto {% if loop.last %}bg-slate-700{% else %}bg-slate-950{% endif %} rounded-lg shadow-lg mt-2 overflow-hidden">
+            <div class="max-w-[24rem] min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto {% if forloop.last %}bg-slate-700{% else %}bg-slate-950{% endif %} rounded-lg shadow-lg mt-2 overflow-hidden">
                 <!-- Card Header -->
                 
                 <div class="relative z-10 flex justify-between items-center w-full">
