@@ -4,6 +4,894 @@ NPM: 2206081465
 
 Kelas: PBP D
 
+TUGAS 5
+
+deployment: https://waifu-collection.vercel.app/
+
+1. Elemen selector dapat dimanfaatkan untuk mengatur gaya default dari setiap elemen html. Misalnya ketika kita ingin mendesain elemen <pre></pre> agar memiliki bentuk kotak dengan background hitam dengan teks berwarna putih , maka kita dapat memanfaatkan elemen selector tersebut seperti ini:
+```
+pre {
+	background-color:black;
+	padding: 0.5rem;
+	color:white
+}
+```
+Waktu yang tepat untuk menggunakan elemen selector adalah ketika kita ingin memberikan default style untuk setiap elemen html dengan tipe tertentu.
+Selain terdapat elemen selector, masih ada beberapa selector lain. Contohnya adalah Id selector, class selector, dan Universal selector.
+Id selector adalah selector yang digunakan untuk memilih elemen html berdasarkan attribut Idnya. Cara menggunakannyaa adalah dengan diawali tanda jangkar "#", lalu dilanjutkan nama idnya lalu kurung kurawal dan tuliskan style di dalam kurung kurawal tersebut.
+Contoh:
+```
+#special-pre {
+	background-color:black;
+	padding: 0.5rem;
+	color:white
+}
+```
+Waktu yang tepat untuk menggunakan id selector adalah ketika ingin memberikan style terpersonalisasi untuk suatu elemen html.
+Class selector adalah selector yang digunakan untuk memilih setiap elemen html dengan kelas tertentu. Cara menggunakannya adalah dengan diawali tanda titik ".", lalu dilanjutkan nama classnya lalu kurung kurawal dan tuliskan style di dalam kurung kurawal tersebut.
+Contoh:
+```
+.my-pre{
+	background-color:black;
+	padding: 0.5rem;
+	color:white
+}
+```
+Universal selector adalah selector yang memilih semua elemen html yang ada. Cara menggunakannya adalah dengan diawali tanda bintang "*", lalu dilanjutkan dengan kurung kurawal dan tuliskan style di dalam kurung kurawal tersebut.
+Contoh:
+```
+*{
+	background-color:black;
+	color:white
+}
+```
+Waktu yang teoat untuk menggunakan universal selector adalah ketika kita ingin mengaplikasikan style-style dasar untuk html kita.
+
+2.
+``<header></header>``
+Dapat digunakan untuk membungkus judul web dan navigation bar. Digunakan bersama dengan tag <nav></nav>
+``<nav></nav>``
+Dapat digunakan sebagai container untuk navigation bar.
+``<section></section>``
+Biasa digunakan untuk elemen yang membungkus section suatu artikel dan diberikan id unik sehingga bisa diakses dan dinavigasikan langsung ke section  yang terkait melalui table of content.
+``<article></article>``
+Biasa digunakan untuk mengelompokkan konten yang berdiri sendiri atau artikel yang bisa berdiri sendiri dalam halaman web.
+``<aside></aside>``
+Bisa digunakan untuk mengelompokkan konten tambahan yang terkait dengan konten utama di halaman web, seperti sidebar atau catatan samping.
+``<main></main>``
+Biasa digunakan untuk mengidentifikasi konten utama dari halaman web. Hanya satu elemen <main> yang diperbolehkan dalam satu halaman.
+``<footer></footer>``
+Biasa digunakan untuk mendefinisikan bagian footer dari suatu elemen atau halaman web. Biasanya digunakan untuk informasi kontak, hak cipta, atau tautan-tautan terkait lainnya. Biasanya footer ditempatkan di bagian paling bawah dari halaman web
+``<figure></figure>``
+Tag ini digunakan untuk mengelompokkan konten multimedia, seperti gambar atau video, dengan keterangan yang terkait menggunakan tag <figcaption>.
+``<figcaption></figcaption>``
+Tag ini digunakan dalam hubungannya dengan tag <figure> untuk memberikan keterangan atau deskripsi pada konten multimedia.
+``<video>``
+Digunakan untuk menampilkan video dalam halaman web. Agar tag ini dapat digunakan kita perlu mengisi atribut src dengan link atau url video.
+``<audio>``
+Digunakan untuk menampilkan audio dalam halaman web. Agar tag ini dapat digunakan kita perlu mengisi atribut src dengan link atau url audio.
+``<canvas></canvas>``
+Tag ini digunakan untuk membuat gambar atau grafik interaktif menggunakan JavaScript.
+``<input>``
+Tag ini digunakan untuk membuat berbagai jenis elemen masukan, seperti kotak teks, tombol radio, atau kotak centang.
+``<textarea></textarea>``
+Tag ini digunakan untuk membuat area teks yang lebih besar yang memungkinkan pengguna memasukkan teks dalam jumlah yang lebih besar.
+``<a></a>``
+Tag ini digunakan untuk membuat tautan atau hyperlink.
+``<img>``
+Tag ini digunakan untuk menampilkan gambar dalam halaman web.
+``<ul></ul>, <ol></ol>, <li></li>``
+``<ol></ol>`` digunakan untuk membuat unordered list. ``<ul></ul>`` digunakan untuk membuat ordered list.  ``<li></li>`` digunakan untuk membuat item dari list tersebut
+``<div></div>``
+Tag ini digunakan untuk mengelompokkan elemen-elemen HTML dan sering digunakan dalam styling dan tata letak halaman web.
+``<span></span>``
+Digunakan untuk mengelompokkan sebagian kecil teks atau elemen dalam dokumen. Dalam paragraf biasanya digunakan untuk mengelompokkan bagian dari paragraf tersebut yang akan di-style berbeda.
+``<form></form>``
+Digunakan untuk membuat formulir yang memungkinkan pengguna memasukkan data atau mengirim data ke server dengan GET,POST, atau request lainnya.
+``<iframe>``
+Tag ini digunakan untuk menampilkan halaman web atau konten dari sumber eksternal dalam halaman web.
+
+4. Margin adalah jarak antara suatu elemen dengan elemen lainnya yang diukur dari batas elemen tersebut. Sementara itu, padding adalah jarak antara batas elemen dengan konten elemen itu sendiri. Bisa dibilang margin adalah ruang kosong diantara elemen-elemen, sementara padding adalah ruang kosong didalam suatu elemen yang berada di antara batas elemen dengan konten elemen.
+
+5. Bootstrap cocok digunakan untuk proyek-proyek web yang membutuhkan desain yang konsisten, sementara tailwind cocok untuk proyek web yang membutuhkan banyak kustomisasi tampilan. Bootstrap juga lebih cocok untuk pemula yang baru terjun ke dunia web karena bootstrap sudah menyediakan komponen-komponen siap pakai , berbeda dengan tailwind yang lebih cocok digunakan oleh orang yang sudah terbiasa dalam dunia web karena kelas utilitas yang dimiliki tailwind adalah simplifikasi penulisan dari sintaks CSS yang rumit untuk menghasilkan tampilan yang indah.
+   
+6. Untuk menerapkan kustomisasi pada aplikasi django kita, hal pertama yang saya lakukan adalah dengan menambahkan link css atau script cdn dari framework css tertentu ke dalam base.html kita. Mengapa demikian? Karena di Django, selain simple, di Django juga sepertinya agak sulit untuk menginstal post-css dari framework css. Untuk itu saya menambahkan script cdn tailwind, yaitu <script src="https://cdn.tailwindcss.com"></script> ini ke dalam base.html yang berada di folder templates pada
+```
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <script src="https://cdn.tailwindcss.com"></script>
+
+
+        {% block meta %}
+        {% endblock meta %}
+    </head>
+
+
+    <body class="bg-slate-900">
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
+```
+Hal itu memungkinkan cdn tersebut bisa diakses di template yang melakukan extends terhadap base.html.
+
+Untuk menerapkan kelas tailwind ke login.html, pastikan bahwa kita telah melakukan extends terhadap base.html pada login.html kita. Selanjutnya, kita dapat menerapkan kelas-kelas tailwind tersebut dengan menuliskan kelas-kelas tersebut ke atribut kelas dari elemen yang ingin kita modifikasi tampilannya. Kemudian, apabila kita ingin menambahkan kustomisasi terhadap kotak login yang berada di Django, sebaiknya kita berhentikan menggunakan {{form.as_p}} atau {{form.as_table}}. Hal tersebut karena akan sangat sulit untuk mengkustomisasinya. Sebagai gantinya, sebaiknya kita membuat form dengan input-inputnya secara manual dan kemudian menambahkan kelas tailwind yang sesuai ke elemen form dan input tersebut. Saya melakukannya seperti ini:
+```
+{% extends 'base.html' %}
+{% block meta %}
+  <title>Masuk ke Akun Waifu</title>
+   
+{% endblock meta %}
+{% block content %}
+<div id="loadingOverlay" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+  
+  <div role="status" class="bg-white bg-opacity-50 rounded-lg p-4 shadow-lg flex justify-center items-center">
+    <svg aria-hidden="true" class="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+  </div>
+</div>
+<div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
+</div>
+
+<div class=" min-h-screen overflow-y-auto flex flex-col justify-center items-center w-screen">
+  <div class="mb-4 flex font-bold w-full text-white lg:text-4xl md:text-2xl text-xl">
+    <h1 class=" mx-auto">Login Akun <span class="text-[#00A8FF]">Waifu Kamu</span> </h1>
+  </div>
+  <form class="flex flex-col min-h-[28rem] bg-slate-950 px-4 py-2 rounded-md text-white max-w-[95%] min-w-[18rem] md:w-[28rem] w-[24rem]" autocomplete="off" method="post">
+    {% csrf_token %}
+    <div class="mb-4">
+      <label for="username" class="block text-white text-sm mb-2">Username</label>
+      <input autocomplete="off" required type="text" name="username" class=" bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Masukkan nama kamu" id="username">
+    </div>
+    <div class="mb-4">
+      <label for="password" class="block text-white text-sm mb-2">Password</label>
+      <input autocomplete="off" required type="password" name="password" class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Buat password" id="password">
+    </div>
+    <div class="mb-4">
+      <h1 class="block text-white text-sm mb-2">Belum punya akun? <span><a href="{% url 'main:register' %}" class="font-bold text-[#00A8FF]">Register</a></span></h1>
+    </div>  
+    <div class="mb-4 mt-auto">
+      <hr class=" border-2 rounded-md border-[#00A8FF]">
+    </div>
+    <div class="mb-2 w-full  text-sm flex">
+      <button onclick="onSubmit()" class="ml-auto px-4 py-2 bg-[#00A8FF] text-black hover:text-white hover:bg-blue-900 rounded-sm"type="submit">Masuk</button>
+    </div>
+     
+  </form>
+</div>
+<script>
+const myElement = document.getElementById('loadingOverlay');
+
+
+window.addEventListener('load', function() {
+  myElement.style.display = 'none';
+});
+function onSubmit (){
+myElement.style.display = 'flex';
+setTimeout(function() {
+  myElement.style.display = 'none';
+}, 5000);
+}
+</script>
+{% endblock content %}
+```
+Untuk menerapkan kelas tailwind ke register.html, mirip seperti kita melakukannya pada login.html, pastikan bahwa kita telah melakukan extends terhadap base.html pada register.html kita. Selanjutnya, kita dapat menerapkan kelas-kelas tailwind tersebut dengan menuliskan kelas-kelas tersebut ke atribut kelas dari elemen yang ingin kita modifikasi tampilannya. Kemudian, apabila kita ingin menambahkan kustomisasi terhadap kotak login yang berada di Django, sebaiknya kita berhentikan menggunakan {{form.as_p}} atau {{form.as_table}}. Hal tersebut karena akan sangat sulit untuk mengkustomisasinya. Sebagai gantinya, sebaiknya kita membuat form dengan input-inputnya secara manual dan kemudian menambahkan kelas tailwind yang sesuai ke elemen form dan input tersebut. Saya melakukannya seperti ini:
+
+```
+{% extends 'base.html' %}
+{% block meta %}
+  <title>Register</title>
+   
+{% endblock meta %}
+{% block content %}
+<div id="loadingOverlay" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+  
+  <div role="status" class="bg-white bg-opacity-50 rounded-lg p-4 shadow-lg flex justify-center items-center">
+    <svg aria-hidden="true" class="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+  </div>
+</div>
+<div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
+</div>
+
+<div class=" min-h-screen overflow-y-auto flex flex-col justify-center items-center w-screen">
+  <div class="mb-4 flex font-bold w-full text-white lg:text-4xl md:text-2xl text-xl">
+    <h1 class=" mx-auto">Buat Akun <span class="text-[#00A8FF]">Waifu Baru</span> </h1>
+  </div>
+  <form class="flex flex-col min-h-[28rem] bg-slate-950 px-4 py-2 rounded-md text-white max-w-[95%] min-w-[20rem] md:w-[28rem] w-[24rem]" autocomplete="off" method="post">
+    {% csrf_token %}
+    <div class="mb-4">
+      <label for="{{ form.username.id_for_label }}" class="block text-white text-sm mb-2">Username</label>
+      <input type="text" name="username" class=" bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Masukkan nama kamu" id="{{ form.username.id_for_label }}">
+      <p class="mt-2 text-[#00A8FF] text-xs text-justify">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</p>
+    </div>
+    <div class="mb-4">
+      <label for="{{ form.password1.id_for_label }}" class="block text-white text-sm mb-2">Password</label>
+      <input type="password" name="password1" class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Buat password" id="{{ form.password1.id_for_label }}">
+      <p class="mt-2 text-[#00A8FF] text-xs text-justify">Your password can`t be too similar to your other personal information.
+        Your password must contain at least 8 characters.
+        Your password can`t be a commonly used password.
+        Your password can`t be entirely numeric.</p>
+    </div>
+    <div class="mb-4">
+      <label for="{{ form.password2.id_for_label }}" class="block text-white text-sm mb-2">Confirm Password</label>
+      <input type="password" name="password2" class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"placeholder="Ulangi password" id="{{ form.password2.id_for_label }}">
+      <p class="mt-2 text-[#00A8FF] text-xs text-justify">Enter the same password as before, for verification.</p>
+    </div>
+    <div class="mb-4">
+      <h1 class="block text-white text-sm mb-2">Sudah punya akun? <span><a href="{% url 'main:login' %}" class="font-bold text-[#00A8FF]">Login</a></span></h1>
+    </div>  
+    <div class="mb-4 mt-auto">
+      <hr class=" border-2 rounded-md border-[#00A8FF]">
+    </div>
+    <div class="mb-2 w-full  text-sm flex">
+      <button onclick="onSubmit()" class="ml-auto px-4 py-2 bg-[#00A8FF] text-black hover:text-white hover:bg-blue-900 rounded-sm"type="submit">Buat Akun</button>
+    </div>
+     
+  </form>
+   
+</div>
+<script>
+const myElement = document.getElementById('loadingOverlay');
+window.addEventListener('load', function() {
+  myElement.style.display = 'none';
+});
+function onSubmit (){
+myElement.style.display = 'flex';
+setTimeout(function() {
+  myElement.style.display = 'none';
+}, 5000);
+}
+</script>
+{% endblock content %}
+```
+
+Untuk menerapkan kelas tailwind ke addCard.html, mirip seperti kita melakukannya pada cara yang sebelumnya, pastikan bahwa kita telah melakukan extends terhadap base.html pada addCard.html kita. Selanjutnya, kita dapat menerapkan kelas-kelas tailwind tersebut dengan menuliskan kelas-kelas tersebut ke atribut kelas dari elemen yang ingin kita modifikasi tampilannya. Kemudian, apabila kita ingin menambahkan kustomisasi terhadap kotak login yang berada di Django, sebaiknya kita berhentikan menggunakan {{form.as_p}} atau {{form.as_table}}. Hal tersebut karena akan sangat sulit untuk mengkustomisasinya. Sebagai gantinya, sebaiknya kita membuat form dengan input-inputnya secara manual dan kemudian menambahkan kelas tailwind yang sesuai ke elemen form dan input tersebut. Saya melakukannya seperti ini:
+```
+{% extends 'base.html' %}
+{% block meta %}
+<title>Tambah Kartu</title>
+{% endblock meta %}
+{% block content %}
+<div id="loadingOverlay" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+  
+  <div role="status" class="bg-white bg-opacity-50 rounded-lg p-4 shadow-lg flex justify-center items-center">
+    <svg aria-hidden="true" class="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+  </div>
+</div>
+<div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
+</div>
+<div class="hidden fixed md:flex justify-end items-end w-screen h-screen -z-10 ">
+  <img class=" w-96 h-auto"src="https://firebasestorage.googleapis.com/v0/b/isa-citra-1691878861005.appspot.com/o/marin-svg.svg?alt=media&token=4260c0db-77af-4631-b748-c1d562032baa" alt="">
+</div>
+<div class=" w-screen min-h-screen flex lg:-ml-8 justify-center lg:justify-center md:justify-start items-center text-white">
+  <div class= "flex flex-col items-center">
+    <h1 class="mt-6 text-white text-4xl font-bold font-sans"> Tambah <span class="text-[#00A8FF]">Kartu Waifu</span></h1>
+    <div class=" mt-4 md:mt-8 bg-slate-950 px-4 max-w-[95%] mx-2 md:min-w-[36rem] py-2 rounded-md">
+      <form method="POST" action="">
+        {% csrf_token %}
+        
+        <div class=" grid grid-cols-4 gap-4">
+        <div class=" flex-col flex md:col-span-2 col-span-3">
+          <label for="name" class=" text-white mb-2 text-sm">Nama Waifu</label>
+          <input for="name" name="name" id="name" class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" placeholder="Nama waifu idamanmu" required>
+        </div>
+        <div class="mb-2 md:col-span-2 col-span-1">
+          <label for="amount" class="block text-white text-sm mb-2">Amount</label>
+          <input
+          required
+            type="number"
+            id="amount"
+            name="amount"
+            min="1"
+            max="100"
+            step="1"
+            placeholder="Jumlah"
+            class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+        </div>
+        </div>
+        <div class=" grid-cols-2 md:grid gap-4">
+
+          <div class=" flex flex-col">
+            <label class="mt-2 mb-2 text-sm" for="strength">Strength</label>
+            <div class=" flex justify-between">
+              <input
+            required
+            class =" w-[90%]"
+            type="range"
+            id="strength"
+            name="strength"
+            min="1"
+            max="100"
+            step="1"
+            value="50"
+            oninput="updateOutput(this.value, 'strength-value'); "
+            >
+            <output for="strength" id="strength-value">50</output>
+            </div>
+          </div>
+
+          <div class=" flex flex-col">
+            <label class="mt-2 mb-2 text-sm" for="speed">Speed</label>
+            <div class=" flex justify-between">
+              <input
+            required
+            class =" w-[90%]"
+            type="range"
+            id="speed"
+            name="speed"
+            min="1"
+            max="100"
+            step="1"
+            value="50"
+            oninput="updateOutput(this.value, 'speed-value'); "
+            >
+            <output for="speed" id="speed-value">50</output>
+            </div>
+          </div>
+
+          <div class=" flex flex-col">
+            <label class="mt-2 mb-2 text-sm" for="intelligence">Intelligence</label>
+            <div class=" flex justify-between">
+              <input
+            required
+            class =" w-[90%]"
+            type="range"
+            id="intelligence"
+            name="intelligence"
+            min="1"
+            max="100"
+            step="1"
+            value="50"
+            oninput="updateOutput(this.value, 'intelligence-value')"
+            >
+            <output for="intelligence" id="intelligence-value">50</output>
+            </div>
+          </div>
+
+          <div class=" flex flex-col">
+            <label class="mt-2 mb-2 text-sm" for="potential">Potential</label>
+            <div class=" flex justify-between">
+              <input
+            required
+            class =" w-[90%]"
+            type="range"
+            id="potential"
+            name="potential"
+            min="1"
+            max="100"
+            step="1"
+            value="50"
+            oninput="updateOutput(this.value, 'potential-value');"
+            >
+            <output for="potential" id="potential-value">50</output>
+            </div>
+          </div>
+          <div class=" flex flex-col">
+            <label class="mt-2 mb-2 text-sm" for="endurance">Endurance</label>
+            <div class=" flex justify-between">
+              <input
+            required
+            class =" w-[90%]"
+            type="range"
+            id="endurance"
+            name="endurance"
+            min="1"
+            max="100"
+            step="1"
+            value="50"
+            oninput="updateOutput(this.value, 'endurance-value');"
+            >
+            <output for="endurance" id="endurance-value">50</output>
+            </div>
+          </div>
+          
+        </div>
+        <div class="flex flex-col">
+          <label for="description" class=" text-white mb-2 mt-2 text-sm">Deskripsi</label>
+          <textarea required id="description" for="description"name="description" class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" type="text" placeholder="Deskripsi tentang waifumu"></textarea>
+        </div>
+        <div class=" grid grid-cols-2 gap-4 mt-2">
+          <div class="flex flex-col">
+            <label for="weight" class="block text-white text-sm mb-2">Weight (kg)</label>
+          <input
+            required
+            type="number"
+            id="weight"
+            name="weight"
+            min="1"
+            max="100"
+            step="0.5"
+            placeholder="Berat Waifu-mu"
+            class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+          </div>
+          <div class="flex flex-col">
+            <label for="amount" class="block text-white text-sm mb-2">Height (cm)</label>
+          <input
+            required
+            type="number"
+            id="height"
+            name="height"
+            min="1"
+            max="200"
+            step="0.5"
+            placeholder="Tinggi waifu-mu"
+            class="bg-slate-800 focus:border text-white text-sm rounded-xs focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          >
+          </div>
+        </div>
+        <div class="flex mt-4">
+          <input type="submit" value="Tambah Kartu" onclick="onSubmit()" class="ml-auto px-4 py-2 text-sm rounded-md bg-slate-900 hover:bg-slate-800">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const myElement = document.getElementById('loadingOverlay');
+
+
+    window.addEventListener('load', function() {
+      myElement.style.display = 'none';
+    });
+  function onSubmit (){
+    myElement.style.display = 'flex';
+    setTimeout(function() {
+      myElement.style.display = 'none';
+    }, 5000);
+  }
+  function updateOutput(value, elementId) {
+    // Mengambil elemen output
+    var outputElement = document.getElementById(elementId);
+     
+    // Mengubah teks pada elemen output sesuai dengan nilai input
+    outputElement.textContent = value;
+  }
+</script>
+{% endblock content %}
+```
+
+Sama seperti sebelumnya, hal yang perlu kita lakukan pertama kali untuk mendesain tampilan home.html adalah dengan meng-extends base.html pada home.html. Untuk selanjutnya, karena kita fokus untuk merender card, kita bisa buat desain cardnya akan seperti apa. Di sini saya membuat desain cardnya seperti ini:
+```
+<div class="max-w-[24rem] min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto bg-slate-950 rounded-lg shadow-lg mt-2 overflow-hidden">
+        <!-- Card Header -->
+         
+        <div class="relative z-10 flex justify-between items-center w-full">
+          <div class="px-4 pt-4 flex flex-col items-center">
+            <h1 class="font-bold ml-auto text-lg text-white">Waifu <span class="text-[#00A8FF]">Card</span></h1>
+            <div class="border-b- mt-2 border-[#00A8FF] w-full mx-2"></div>
+          </div>
+          <div class="pt-4 flex items-center justify-end space-x-2">
+            <button onclick="changeAmount({{data.id}}, -1)" class="fas fa-minus w-8 h-8" style="color: white;">
+            </button>
+            <button onclick="changeAmount({{data.id}}, 1)" class="fas fa-plus w-8 h-8" style="color: white;">
+            </button>
+            <button onclick="deleteCard({{data.id}})" class="fas fa-trash w-8 h-8" style="color: red;">
+            </button>
+          </div>
+           
+        </div>
+        <!-- Card Body -->
+        <div class="relative z-10 p-4">
+          <!-- Waifu Name & Amount -->
+          <div class="flex justify-between items-center mb-2">
+            <h2 class="text-lg font-semibold text-[#00A8FF]">{{ data.name }}</h2>
+            <div class="ml-2 text-white px-3 py-1 text-sm rounded-md bg-teal-950 hover:bg-teal-900">
+              <h1>{{ data.amount }}</h1>
+            </div>
+          </div>
+          <!-- Waifu Description -->
+          <p class="text-white text-sm" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ data.description }}</p>
+          <!-- Waifu Stats -->
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-[#00A8FF]">STATS</h3>
+            <div class="flex flex-col">
+              <div class="flex flex-col justify-center">
+                <label for="strength" class="text-white text-sm">Strength</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.strength <= 25 %}green-600{% elif data.strength <= 50 %}yellow-600{% elif data.strength <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.strength }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.strength }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="speed" class="text-white text-sm">Speed</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.speed <= 25 %}green-600{% elif data.speed <= 50 %}yellow-600{% elif data.speed <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.speed }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.speed }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="potential" class="text-white text-sm">Potential</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.potential <= 25 %}green-600{% elif data.potential <= 50 %}yellow-600{% elif data.potential <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.potential }}%;"></div>
+                  </div>
+                <span class="ml-2 text-white">{{ data.potential }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="intelligence" class="text-white text-sm">Intelligence</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.intelligence <= 25 %}green-600{% elif data.intelligence <= 50 %}yellow-600{% elif data.intelligence <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.intelligence }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.intelligence }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="endurance" class="text-white text-sm">Endurance</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.endurance <= 25 %}green-600{% elif data.endurance <= 50 %}yellow-600{% elif data.endurance <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.endurance }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.endurance }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Waifu Physical Attributes -->
+          <div class="mt-4 flex flex-col">
+            <h3 class="text-lg font-semibold text-[#00A8FF]">Physical Attributes</h3>
+            <div class="flex justify-between items-center text-white">
+              <h1 class="text-sm">Height</h1>
+              <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">{{ data.height }} cm</div>
+            </div>
+            <div class="flex justify-between items-center text-white space-y-3">
+              <h1 class="text-sm">Weight</h1>
+              <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">{{ data.weight }} kg</div>
+            </div>
+          </div>
+        </div>
+        <div id="card-rank-{{data.id}}" class="z-0  w-full absolute font-bold text-[#00A8FF] opacity-30 inset-0 flex items-center justify-center text-[24rem]">
+          A
+        </div>
+        <script>
+          function calculateRank(strength, speed, intelligence, potential, endurance) {
+             // Menghitung nilai total stats
+            var totalStats = (strength + speed + intelligence + potential + endurance) / 5;
+
+            // Menentukan kisaran rank berdasarkan total stats
+            if (totalStats >= 90) {
+              return 'S';
+            } else if (totalStats >= 80) {
+              return 'A';
+            } else if (totalStats >= 70) {
+              return 'B';
+            } else if (totalStats >= 60) {
+              return 'C';
+            } else if (totalStats >= 50) {
+              return 'D';
+            } else {
+              return 'E';
+            }
+          }  
+          var element = document.getElementById("card-rank-{{ data.id }}");
+          var strength = {{ data.strength }};
+          var speed = {{ data.speed }};
+          var intelligence = {{ data.intelligence }};
+          var potential = {{ data.potential }};
+          var endurance = {{ data.endurance }};
+          if(element){
+            console.log('here')
+            element.innerText = calculateRank(strength, speed, intelligence, potential, endurance)
+          }
+        </script>
+      </div>
+```
+Kemudian setelah itu, kita perlu merender bagaimana card tersebut diposisikan, nah saya sendiri ingin memposisikan bahwa card-card tersebut ditampilkan 1 kolom jika layar berukuran kecil, 2 kolom jika layar tersebut berukuran medium, 3 kolom jika layar berukuran besar. Untuk itu, saya memanfaatkan grid system dari tailwind.
+
+Untuk desain layout kira kira seperti ini:
+```
+ {% if waifus|length == 0 %}
+      <div class="flex w-full justify-center text-sm md:text-base lg:text-lg text-white font-bold h-full items-center">
+        <h1> Belum ada waifu. Silahkan menambahkan</h1>
+      </div>
+    {% else %}
+      <div class="mb-4 mx-auto gap-4 grid grid-cols-1 {% if waifus|length == 1 %}md:grid-cols-1 lg:grid-cols-1{% elif waifus|length == 2 %}md:grid-cols-2 lg:grid-cols-2{% else %}md:grid-cols-2 lg:grid-cols-3{% endif %} justify-center ">
+<!--Render Seluruh Card -->
+{% endif %}
+```
+Kemudian kita padukan kedua hal tersebut (desain card dan layoutnya) dengan elemen-elemen lain maupun script untuk menghasilkan hasil final home.html seperti ini:
+```
+{% extends 'base.html' %}
+
+
+  {% block meta %}
+  <title>Waifu Card Collection</title>
+   
+  {% endblock meta %}
+   
+  {% block content %}
+   
+<div id="loadingOverlay" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+  
+  <div role="status" class="bg-white bg-opacity-50 rounded-lg p-4 shadow-lg flex justify-center items-center">
+    <svg aria-hidden="true" class="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+    </svg>
+  </div>
+</div>
+
+  <div class="w-screen min-h-screen overflow-y-auto flex flex-col">
+     
+    <div class=" hidden md:flex fixed right-0 top-0 h-screen w-3/4 bg-blue-700 -z-20" style="clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 80% 0%);">
+    </div>
+    <a href="{% url 'main:logout' %}" onclick="onLogout()" class="fixed top-2 right-2 text-white px-4 py-2 text-base rounded-md bg-slate-950 hover:bg-teal-900">
+      <h1>Logout</h1>
+    </a>
+    <a href="{% url 'main:addCard' %}" onclick="onClickAdd()" class=" z-20 fixed bottom-24 right-12 md:right-24 bg-[#00A8FF] hover:bg-teal-700 text-black hover:text-white rounded-full md:w-16 md:h-16 w-12 h-12 flex items-center justify-center">
+      <h1 class="text-4xl font-bold mb-1">+</h1>
+    </a>
+    <div class="flex flex-col w-full text-base p-4 text-white font-bold ">
+      <div class=" p-4 rounded-md bg-opacity-30 text-base">
+        <h1>Nama Aplikasi: <span class="text-[#00A8FF]">Waifu Card Collection</span></h1>
+      <h1>Nama: <span class="text-[#00A8FF]">Isa Citra Buana</span></h1>
+      <h1>NPM: <span class="text-[#00A8FF]">2206081465</span></h1>
+      <h1>Kelas: <span class="text-[#00A8FF]">PBP D</span></h1>
+      </div>
+      <div class="flex w-full mb-2 justify-center text-base text-white font-bold h-full items-center">
+        <h1> <span class="text-[#00A8FF]">{{username}}</span> terakhir login pada {{last_login}}</h1>
+      </div>
+      <div class=" mx-auto text-white font-bold text-base ">
+        <h1>Terdapat <span class="text-[#00A8FF]">{{total}} kartu waifu </span></h1>
+      </div>
+
+    </div>
+     
+     
+    {% if waifus|length == 0 %}
+      <div class="flex w-full justify-center text-sm md:text-base lg:text-lg text-white font-bold h-full items-center">
+        <h1> Belum ada waifu. Silahkan menambahkan</h1>
+      </div>
+    {% else %}
+      <div class="mb-4 mx-auto gap-4 grid grid-cols-1 {% if waifus|length == 1 %}md:grid-cols-1 lg:grid-cols-1{% elif waifus|length == 2 %}md:grid-cols-2 lg:grid-cols-2{% else %}md:grid-cols-2 lg:grid-cols-3{% endif %} justify-center ">
+      {% for data in waifus %}
+      <div class="max-w-[24rem] min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto bg-slate-950 rounded-lg shadow-lg mt-2 overflow-hidden">
+        <!-- Card Header -->
+         
+        <div class="relative z-10 flex justify-between items-center w-full">
+          <div class="px-4 pt-4 flex flex-col items-center">
+            <h1 class="font-bold ml-auto text-lg text-white">Waifu <span class="text-[#00A8FF]">Card</span></h1>
+            <div class="border-b- mt-2 border-[#00A8FF] w-full mx-2"></div>
+          </div>
+          <div class="pt-4 flex items-center justify-end space-x-2">
+            <button onclick="changeAmount({{data.id}}, -1)" class="fas fa-minus w-8 h-8" style="color: white;">
+            </button>
+            <button onclick="changeAmount({{data.id}}, 1)" class="fas fa-plus w-8 h-8" style="color: white;">
+            </button>
+            <button onclick="deleteCard({{data.id}})" class="fas fa-trash w-8 h-8" style="color: red;">
+            </button>
+          </div>
+           
+        </div>
+        <!-- Card Body -->
+        <div class="relative z-10 p-4">
+          <!-- Waifu Name & Amount -->
+          <div class="flex justify-between items-center mb-2">
+            <h2 class="text-lg font-semibold text-[#00A8FF]">{{ data.name }}</h2>
+            <div class="ml-2 text-white px-3 py-1 text-sm rounded-md bg-teal-950 hover:bg-teal-900">
+              <h1>{{ data.amount }}</h1>
+            </div>
+          </div>
+          <!-- Waifu Description -->
+          <p class="text-white text-sm" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ data.description }}</p>
+          <!-- Waifu Stats -->
+          <div class="mt-4">
+            <h3 class="text-lg font-semibold text-[#00A8FF]">STATS</h3>
+            <div class="flex flex-col">
+              <div class="flex flex-col justify-center">
+                <label for="strength" class="text-white text-sm">Strength</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.strength <= 25 %}green-600{% elif data.strength <= 50 %}yellow-600{% elif data.strength <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.strength }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.strength }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="speed" class="text-white text-sm">Speed</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.speed <= 25 %}green-600{% elif data.speed <= 50 %}yellow-600{% elif data.speed <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.speed }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.speed }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="potential" class="text-white text-sm">Potential</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.potential <= 25 %}green-600{% elif data.potential <= 50 %}yellow-600{% elif data.potential <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.potential }}%;"></div>
+                  </div>
+                <span class="ml-2 text-white">{{ data.potential }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="intelligence" class="text-white text-sm">Intelligence</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.intelligence <= 25 %}green-600{% elif data.intelligence <= 50 %}yellow-600{% elif data.intelligence <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.intelligence }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.intelligence }}</span>
+                </div>
+              </div>
+              <div class="flex flex-col justify-center">
+                <label for="endurance" class="text-white text-sm">Endurance</label>
+                <div class="flex justify-between items-center">
+                  <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                    <div class="bg-{% if data.endurance <= 25 %}green-600{% elif data.endurance <= 50 %}yellow-600{% elif data.endurance <= 75 %}orange-600{% else %}red-600{% endif %} h-full rounded-full" style="width: {{ data.endurance }}%;"></div>
+                  </div>
+                  <span class="ml-2 text-white">{{ data.endurance }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Waifu Physical Attributes -->
+          <div class="mt-4 flex flex-col">
+            <h3 class="text-lg font-semibold text-[#00A8FF]">Physical Attributes</h3>
+            <div class="flex justify-between items-center text-white">
+              <h1 class="text-sm">Height</h1>
+              <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">{{ data.height }} cm</div>
+            </div>
+            <div class="flex justify-between items-center text-white space-y-3">
+              <h1 class="text-sm">Weight</h1>
+              <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">{{ data.weight }} kg</div>
+            </div>
+          </div>
+        </div>
+        <div id="card-rank-{{data.id}}" class="z-0  w-full absolute font-bold text-[#00A8FF] opacity-30 inset-0 flex items-center justify-center text-[24rem]">
+          A
+        </div>
+        <script>
+          function calculateRank(strength, speed, intelligence, potential, endurance) {
+             // Menghitung nilai total stats
+            var totalStats = (strength + speed + intelligence + potential + endurance) / 5;
+
+            // Menentukan kisaran rank berdasarkan total stats
+            if (totalStats >= 90) {
+              return 'S';
+            } else if (totalStats >= 80) {
+              return 'A';
+            } else if (totalStats >= 70) {
+              return 'B';
+            } else if (totalStats >= 60) {
+              return 'C';
+            } else if (totalStats >= 50) {
+              return 'D';
+            } else {
+              return 'E';
+            }
+          }  
+          var element = document.getElementById("card-rank-{{ data.id }}");
+          var strength = {{ data.strength }};
+          var speed = {{ data.speed }};
+          var intelligence = {{ data.intelligence }};
+          var potential = {{ data.potential }};
+          var endurance = {{ data.endurance }};
+          if(element){
+            console.log('here')
+            element.innerText = calculateRank(strength, speed, intelligence, potential, endurance)
+          }
+        </script>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+       
+     
+  </div>
+
+  <script>
+
+    const myElement = document.getElementById('loadingOverlay');
+
+
+    window.addEventListener('load', function() {
+      myElement.style.display = 'none';
+    });
+    function onLogout (){
+      myElement.style.display = 'flex';
+      setTimeout(function() {
+        myElement.style.display = 'none';
+      }, 5000);
+    }
+    function onClickAdd(){
+      myElement.style.display = 'flex';
+      setTimeout(function() {
+      myElement.style.display = 'none';
+    }, 5000);
+    }
+    function deleteCard(id){
+      myElement.style.display = 'flex';
+      const csrftoken = getCookie('csrftoken');
+      const formData = new FormData();
+      formData.append('waifu_card_id', id);
+      fetch('/main/deleteCard/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      body: formData
+    })
+    .then(response => {
+      if (response.status === 200) {
+        // Handle berhasil
+        // myElement.style.display = 'none';
+        console.log('Perubahan jumlah berhasil');
+        console.log(response)
+        window.location.href = '/main/';
+      } else {
+        // Handle kesalahan jika diperlukan
+        //myElement.style.display = 'none';
+        console.error('Terjadi kesalahan:', response.statusText);
+        myElement.style.display = 'none';
+      }
+    })
+    .catch(error => {
+      //myElement.style.display = 'none';
+      console.error('Terjadi kesalahan:', error);
+      myElement.style.display = 'none';
+    });
+    }
+    function changeAmount(id, quantity){
+      myElement.style.display = 'flex';
+      const csrftoken = getCookie('csrftoken');
+      const formData = new FormData();
+      formData.append('waifu_card_id', id);
+      formData.append('quantity', quantity);
+      fetch('/main/changeAmount/', {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      body: formData
+    })
+    .then(response => {
+      if (response.status === 200) {
+        window.location.href = '/main/';
+      } else {
+        console.error('Terjadi kesalahan:', response.statusText);
+        myElement.style.display = 'none';
+      }
+    })
+    .catch(error => {
+      console.error('Terjadi kesalahan:', error);
+      myElement.style.display = 'none';
+    });
+    }
+
+    function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+     
+  </script>
+  {% endblock content %}
+```
+
 TUGAS 4
 
 deployment: https://waifu-collection.vercel.app/
