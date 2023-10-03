@@ -52,7 +52,7 @@
         {% else %}
             <div class="mb-4  mx-auto gap-4 grid grid-cols-1 {% if waifus|length == 1 %}md:grid-cols-1 lg:grid-cols-1{% elif waifus|length == 2 %}md:grid-cols-2 lg:grid-cols-2{% else %}md:grid-cols-2 lg:grid-cols-3{% endif %} justify-center ">
             {% for data in waifus %}
-            <div class="max-w-[24rem] min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto bg-slate-950 rounded-lg shadow-lg mt-2 overflow-hidden">
+            <div class="max-w-[24rem] min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto {% if loop.last %}bg-slate-700{% else %}bg-slate-950{% endif %} rounded-lg shadow-lg mt-2 overflow-hidden">
                 <!-- Card Header -->
                 
                 <div class="relative z-10 flex justify-between items-center w-full">
