@@ -8,7 +8,7 @@ TUGAS 5
 
 deployment: https://waifu-collection.vercel.app/
 
-1. Elemen selector dapat dimanfaatkan untuk mengatur gaya default dari setiap elemen html. Misalnya ketika kita ingin mendesain elemen <pre></pre> agar memiliki bentuk kotak dengan background hitam dengan teks berwarna putih , maka kita dapat memanfaatkan elemen selector tersebut seperti ini:
+1. Elemen selector dapat dimanfaatkan untuk mengatur gaya default dari setiap elemen html. Misalnya ketika kita ingin mendesain elemen ``<pre></pre>`` agar memiliki bentuk kotak dengan background hitam dengan teks berwarna putih , maka kita dapat memanfaatkan elemen selector tersebut seperti ini:
 ```
 pre {
 	background-color:black;
