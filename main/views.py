@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Item
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages  
@@ -8,7 +8,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.urls import reverse
-
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 @login_required(login_url='/main/login')
 def create_card(request):
@@ -70,6 +71,66 @@ def home(request):
         card_total += waifu.amount
     return render(request, "home.html", {'waifus': waifus, 'username': user.username, 'total':card_total, 'last_login': last_login,})
 
+# Menggunakan AJAX
+
+@login_required(login_url='/main/login')
+@csrf_exempt
+def home_ajax(request):
+    try:
+        waifus = Item.objects.filter(user=request.user)
+        user = request.user
+        card_total = 0
+        last_login = request.COOKIES.get('last_login', 'Tidak ada data')
+        for waifu in waifus:
+            card_total += waifu.amount
+        data = {
+            'username':user.username,
+            'waifus':list(waifus.values()),
+            'total':card_total,
+            'lastLogin':last_login
+        }
+        return JsonResponse(data)
+    except Exception as e:
+        print(e)
+        return JsonResponse({'error': 'Terjadi kesalahan: '+ str(e)}, status=500)
+
+@login_required(login_url='/main/login')
+@csrf_exempt
+def create_ajax(request):
+    if(request.method == "POST"):
+        try:
+            data = json.loads(request.body)
+            name = data.get('name')
+            amount = data.get('amount')
+            description = data.get('description')
+            strength = data.get('strength')
+            speed = data.get('speed')
+            potential = data.get('potential')
+            intelligence = data.get('intelligence')
+            endurance = data.get('endurance')
+            height = data.get('height')
+            weight = data.get('weight')
+            item = Item(
+                name=name,
+                amount=amount,
+                description=description,
+                strength=strength,
+                speed=speed,
+                potential=potential,
+                intelligence=intelligence,
+                endurance=endurance,
+                height=height,
+                weight=weight,
+                user=request.user
+            )
+            item.save()
+            return JsonResponse({'message': 'Berhasil membuat kartu', 'status':'success'})
+        except Exception as e:
+            print(e)
+            return JsonResponse({'message': 'terdapat kesalahan dalam membuat kartu: '+str(e), 'status':'failed'}, status=500 )
+
+    return HttpResponseNotFound()
+        
 
 
 def register(request):
