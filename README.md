@@ -4,6 +4,423 @@ NPM: 2206081465
 
 Kelas: PBP D
 
+TUGAS 6
+
+1. Synchronous Programming adalah pendekatan pemrograman di mana kode dijalankan satu per satu secara hierarkis dari atas ke bawah. Itu artinya kode atau task harus menunggu kode atau task yang lebih awal untuk diselesaikan terlebih dahulu sebelum kode atau task ini dijalankan. Sementara itu, Asynchronous Programming adalah pendekatan pemrograman di mana kode dijalankan secara independen yang artinya jika kode pada baris atas belum selesai, maka kode yang berada di baris lebih bawah tidak perlu di-pending, tetapi bisa berjalan tanpa harus menunggu kode diatasnya untuk selesai. 
+
+2. Event driven programming adalah pendekatan pemrograman di mana blok kode tertentu akan dijalankan untuk merespons event yang dilakukan oleh user. Dengan kata lain, pendekatan ini memungkinkan jalannya suatu program ditentukan oleh interaksi user terhadap program tersebut.
+
+Contoh dari event driven programming pada tugas ini adalah:
+(line 191 di home.html) 
+```
+<button onclick="openForm()" id="open-form-button" class=" z-20 fixed bottom-16 right-8  bg-teal-700 hover:bg-teal-500 text-black hover:text-white  rounded-md py-2 px-4 flex items-center justify-center">
+<h1 class="lg:text-lg md:text-base text-xs text-white">+ Add Card</h1></button>
+```
+Apabila user melakukan event click terhadap button tersebut maka blok kode, dalam hal ini fungsi ``openForm`` dijalankan.
+ (openForm di home.js)
+ ```
+ const openForm = () =>{
+    const formContainerElement = document.getElementById('form-container');
+    const openFormButtonElement = document.getElementById('open-form-button');
+    const logoutButtonElement = document.getElementById('logout-button');
+    formContainerElement.style.display = 'flex';
+    openFormButtonElement.style.display = 'none';
+    logoutButtonElement.style.display = 'none';
+}
+ ```
+Begitu button dengan id ``open-form-button`` tersebut ditekan maka elemen dengan id ``form-container`` dimunculkan, sementara elemen dengan id ``open-form-button`` dan elemen dengan id ``logout-button`` disembunyikan.
+
+3. 
+Asynchronous programming dalam AJAX biasanya melibatkan penggunaan callback function. Callback function  akan dijalankan ketika permintaan berhasil (success) atau gagal (error). Terdapat konsep Promise. Promise adalah objek dalam JavaScript yang mewakili hasil dari operasi asinkron, baik itu sukses (resolved) atau gagal (rejected). Promise digunakan untuk mengelola operasi asinkron dan membuat kode yang lebih mudah dibaca dan dipahami daripada menggunakan callback. . AJAX juga menerapkan konsep async dan await untuk mengelola operasi asinkron. Ini membuat kode menjadi  lebih bersih dan mudah dipahami karena menghindari callback hell. Selain itu, penggunaan async dan await juga membuat kode lebih enak dibaca daripada menggunakan Promise.
+
+
+4. Di sisi kinerja, fetch api lebih efisien daripada jquery ajax. Hal tersebut karena fetch api adalah bagian dari bawaan javascript. Dengan kata lain, fetch api adalah api yang terintegrasi secara langsung dengan browser. Sementara itu, JQuery AJAX adalah library eksternal. Hal tersebut menyebabkan JQuery AJAX memiliki overhead tambahan dibandingkan fetch api. Ketika  menggunakan jQuery AJAX, kita harus memuat seluruh library jQuery, yang termasuk banyak fitur yang mungkin tidak dibutuhkan dalam web kita. Ini berarti ada "overhead" tambahan yang terlibat dalam penggunaan jQuery hanya untuk AJAX, yang dapat memperlambat kinerja  web kita. 
+
+Di sisi pengaturan request, fetch api memberi Anda lebih banyak kontrol langsung terhadap permintaan HTTP. Anda dapat mengelola request headers, method, respons, serta menggunakan Promise untuk mengatur logika yang lebih terperinci. Sementara itu, jQuery AJAX memberikan abstraksi yang lebih tinggi dan sederhana, yang dapat mempermudah penggunaan untuk pemula, tetapi dapat mengorbankan kontrol yang lebih halus atas permintaan dan respons HTTP.
+
+Kemudian perbedaan lainnya adalah tentang Callback Hell. Kita bisa mengantisipasi harus menulis Callback Hell dengan fetch api yang memanfaatkan async dan await. Akan tetapi, pada jQuery AJAX, Callback Hell tidak bisa diantisipasi karena jQuery masih menggunakan penanganan Callback secara tradisional.
+
+Saya cenderung lebih menyukai fetch api karena fetch api hingga sekarang terus dikembangkan sementara penggunaan jQuery AJAX semakin menurun. Selain itu, fetch api bisa menangani asynchronous programming secara lebih modern tanpa harus khawatir dengan Callback Hell berbeda dengan jQuery AJAX.
+
+5.
+
+Pertama konfigurasikan tambahkan ``'django.contrib.staticfiles'`` ke settings.py pada direktori projek.
+```
+...
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'main'
+]
+...
+```
+Hal ini mengaktifkan pengelolaan file static di Django.
+
+Kemudian, pada settings.py tersebut, kita perlu mengonfigurasikan STATIC_URL dan STATIC_ROOT.
+```
+...
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+...
+```
+STATIC_URL adalah URL yang akan digunakan untuk merujuk ke file statis dalam template. STATIC_ROOT adalah direktori tempat file statis akan dikumpulkan saat menjalankan perintah collectstatic.
+
+Kemudian, buat folder bernama static di direktori app. Dalam hal ini saya membuat folder static pada direktori main. Di dalam folder yang bernama static tersebut, tambahkan file javascript.
+Saya menamai file tersebut sebagai home.js . Kemudian, tuliskan fungsi-fungsi yang kita perlukan untuk menjalankan AJAX dengan pendekatan Fetch API.
+Berikut adalah kode pada main.js:
+```
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+function calculateRank(strength, speed, intelligence, potential, endurance) {
+    // Menghitung nilai total stats
+   var totalStats = (strength + speed + intelligence + potential + endurance) / 5;
+
+   // Menentukan kisaran rank berdasarkan total stats
+   if (totalStats >= 90) {
+       return 'S';
+   } else if (totalStats >= 80) {
+       return 'A';
+   } else if (totalStats >= 70) {
+       return 'B';
+   } else if (totalStats >= 60) {
+       return 'C';
+   } else if (totalStats >= 50) {
+       return 'D';
+   } else {
+       return 'E';
+   }
+}
+
+const changeAmountAJAX = async (id, quantity) => {
+    const loadingElement = document.getElementById("loadingOverlay");
+    const csrftoken = getCookie('csrftoken');
+    const formData = new FormData();
+    formData.append('waifu_card_id', id);
+    formData.append('quantity', quantity);
+    try {
+        loadingElement.style.display = "flex";
+        const res = await fetch('/main/changeAmount/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            body: formData
+        })
+        console.log(res)
+        await getData()
+    } catch (error) {
+        console.log(error)
+    }
+    loadingElement.style.display = "none";
+}
+const deleteCardAJAX = async (id) =>{
+    const loadingElement = document.getElementById("loadingOverlay");
+    const csrftoken = getCookie('csrftoken');
+    const formData = new FormData();
+    formData.append('waifu_card_id', id);
+    try {
+        loadingElement.style.display = "flex";
+        const res = await fetch('/main/deleteCard/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            body: formData
+        });
+        console.log(res)
+        await getData()
+    } catch (error) {
+        console.log(error)
+    }
+    loadingElement.style.display = "none";
+}
+
+const resetForm = () => {
+    document.getElementById("name").value = "";
+    document.getElementById("amount").value = "";
+    document.getElementById("strength").value = 50; 
+    document.getElementById("speed").value = 50;
+    document.getElementById("intelligence").value = 50;
+    document.getElementById("potential").value = 50;
+    document.getElementById("endurance").value = 50;
+    document.getElementById("description").value = "";
+    document.getElementById("weight").value = ""; 
+    document.getElementById("height").value = "";
+    document.getElementById('strength-value').textContent = "50"; 
+    document.getElementById('speed-value').textContent = "50"; 
+    document.getElementById('intelligence-value').textContent = "50"; 
+    document.getElementById('potential-value').textContent = "50"; 
+    document.getElementById('endurance-value').textContent = "50"; 
+}
+const submitForm = async () =>{
+    const loadingElement = document.getElementById("loadingOverlay");
+    const nameInput = document.getElementById("name");
+    const descriptionInput = document.getElementById("description");
+    const amountInput = document.getElementById("amount");
+    const weightInput = document.getElementById("weight");
+    const heightInput = document.getElementById("height");
+    const name = document.getElementById("name").value;
+    const amount = document.getElementById("amount").value;
+    const strength = document.getElementById("strength").value;
+    const speed = document.getElementById("speed").value;
+    const intelligence = document.getElementById("intelligence").value;
+    const potential = document.getElementById("potential").value;
+    const endurance = document.getElementById("endurance").value;
+    const description = document.getElementById("description").value;
+    const weight = document.getElementById("weight").value;
+    const height = document.getElementById("height").value;
+
+    if (name.trim() === "") {
+        alert("Nama tidak boleh kosong");
+        nameInput.focus();
+        return false;
+    }
+    if (description.trim() === "") {
+        alert("Deskripsi tidak boleh kosong");
+        descriptionInput.focus();
+        return false;
+    }
+    if (amount <= 0 || isNaN(amount)) {
+        alert("Jumlah harus bilangan bulat lebih dari 0 dan tidak boleh kosong");
+        amountInput.focus();
+        return false;
+    }
+    if (weight <= 0 || isNaN(weight)) {
+        alert("Berat harus bilangan dan tidak boleh kosong");
+        weightInput.focus();
+        return false;
+    }
+    if (height <= 0 || isNaN(height)) {
+        alert("Jumlah harus bilangan dan tidak boleh kosong");
+        heightInput.focus();
+        return false;
+    }
+    const data = {
+        name: name,
+        description: description,
+        amount: amount,
+        weight: weight,
+        height: height,
+        strength: strength,
+        speed: speed,
+        intelligence: intelligence,
+        potential: potential,
+        endurance: endurance
+    };
+    try {
+        loadingElement.style.display = 'flex';
+        const res = await fetch('/main/create_ajax/', {
+            method:"POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(data),
+            
+        })
+        await getData()
+        resetForm()
+
+    } catch (error) {
+        console.log(error)
+    }
+    loadingElement.style.display = 'none';
+    closeForm()
+
+}
+
+function updateOutput(value, elementId) {
+    // Mengambil elemen output
+    var outputElement = document.getElementById(elementId);
+    
+    // Mengubah teks pada elemen output sesuai dengan nilai input
+    outputElement.textContent = value;
+    
+}
+
+const openForm = () =>{
+    const formContainerElement = document.getElementById('form-container');
+    const openFormButtonElement = document.getElementById('open-form-button');
+    const logoutButtonElement = document.getElementById('logout-button');
+    formContainerElement.style.display = 'flex';
+    openFormButtonElement.style.display = 'none';
+    logoutButtonElement.style.display = 'none';
+}
+
+const closeForm = ()=> {
+    const formContainerElement = document.getElementById('form-container');
+    const openFormButtonElement = document.getElementById('open-form-button');
+    const logoutButtonElement = document.getElementById('logout-button');
+    formContainerElement.style.display = 'none';
+    openFormButtonElement.style.display = 'flex';
+    logoutButtonElement.style.display = 'flex';
+}
+
+const getData = async () => {
+    const containerElement = document.getElementById("collection-container");
+    const totalCardElement = document.getElementById("total-of-cards");
+   
+    try {
+        
+        const res = await fetch("/main/home_ajax/");
+        const {username, waifus, lastLogin, total} = await res.json();
+        totalCardElement.innerHTML = `Terdapat <span  class="text-[#00A8FF]">${total} kartu waifu </span>`
+        if(waifus.length == 0){
+            containerElement.innerHTML = `<div class="flex w-full justify-center text-sm md:text-base lg:text-lg text-white font-bold h-full items-center">
+            <h1> Belum ada waifu. Silahkan menambahkan</h1>
+        </div>`
+        }
+        else{
+            let innerHTML = `<div class="mb-4  mx-auto gap-4 grid justify-center grid-cols-1    `
+            if(waifus.length == 1){
+                innerHTML += `md:grid-cols-1 lg:grid-cols-1">`
+            }
+            else if(waifus.length == 2){
+                innerHTML += `md:grid-cols-2 lg:grid-cols-2">`
+            }
+            else{
+                innerHTML +=  `md:grid-cols-2 lg:grid-cols-3">`
+            }
+            waifus.forEach((waifu, index)=>{
+                innerHTML+=`<div class="max-w-[24rem] bg-opacity-60 min-w-[21rem] relative w-[21rem] md:w-[24rem] px-4 mx-auto rounded-lg shadow-lg mt-2 overflow-hidden  `;
+                if(index == waifus.length - 1){
+                    innerHTML+= `bg-slate-700">`;
+                }
+                else{
+                    innerHTML+= `bg-slate-950">`;
+                }
+
+                innerHTML+= `<!-- Card Header -->
+                <div class="relative z-10 flex justify-between items-center w-full">
+                    <div class="px-4 pt-4 flex flex-col items-center">
+                        <h1 class="font-bold ml-auto text-lg text-white">Waifu <span class="text-[#00A8FF]">Card</span></h1>
+                        <div class="border-b- mt-2 border-[#00A8FF] w-full mx-2"></div>
+                    </div>
+                    <div class="pt-4 flex items-center justify-end space-x-2">
+                        <button onclick="changeAmountAJAX(${waifu.id}, -1)" class="fas fa-minus w-8 h-8" style="color: white;">
+                        </button>
+                        <button onclick="changeAmountAJAX(${waifu.id}, 1)" class="fas fa-plus w-8 h-8" style="color: white;">
+                        </button>
+                        <button onclick="deleteCardAJAX(${waifu.id})" class="fas fa-trash w-8 h-8" style="color: red;">
+                        </button>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="relative z-10 p-4">
+                    <!-- Waifu Name & Amount -->
+                    <div class="flex justify-between items-center mb-2">
+                        <h2 class="text-lg font-semibold text-[#00A8FF]">${ waifu.name }</h2>
+                        <div class="ml-2 text-white px-3 py-1 text-sm rounded-md bg-teal-950 hover:bg-teal-900">
+                            <h1>${ waifu.amount }</h1>
+                        </div>
+                    </div>
+                    <!-- Waifu Description -->
+                    <p class="text-white text-sm" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${ waifu.description }</p>
+                    <!-- Waifu Stats -->
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-[#00A8FF]">STATS</h3>
+                        <div class="flex flex-col">
+                            <div class="flex flex-col justify-center">
+                                <label for="strength" class="text-white text-sm">Strength</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-${waifu.strength <= 25 ? 'green-600' : waifu.strength <= 50 ? 'yellow-600': waifu.strength <= 75 ? 'orange-600' : 'red-600'}
+                                         h-full rounded-full" style="width: ${ waifu.strength }%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">${ waifu.strength }</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="speed" class="text-white text-sm">Speed</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-${waifu.speed <= 25 ? 'green-600' : waifu.speed <= 50 ? 'yellow-600': waifu.speed <= 75 ? 'orange-600' : 'red-600'}
+                                         h-full rounded-full" style="width: ${ waifu.speed }%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">${ waifu.speed }</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="potential" class="text-white text-sm">Potential</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-${waifu.potential <= 25 ? 'green-600' : waifu.potential <= 50 ? 'yellow-600': waifu.potential <= 75 ? 'orange-600' : 'red-600'}
+                                         h-full rounded-full" style="width: ${ waifu.potential }%;"></div>
+                                    </div>
+                                <span class="ml-2 text-white">${ waifu.potential }</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="intelligence" class="text-white text-sm">Intelligence</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-${waifu.intelligence <= 25 ? 'green-600' : waifu.intelligence <= 50 ? 'yellow-600': waifu.intelligence <= 75 ? 'orange-600' : 'red-600'}
+                                         h-full rounded-full" style="width: ${ waifu.intelligence }%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">${ waifu.intelligence }</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label for="endurance" class="text-white text-sm">Endurance</label>
+                                <div class="flex justify-between items-center">
+                                    <div class="bg-white rounded-full h-[0.5rem] w-[90%]">
+                                        <div class="bg-${waifu.endurance <= 25 ? 'green-600' : waifu.endurance <= 50 ? 'yellow-600': waifu.endurance <= 75 ? 'orange-600' : 'red-600'}
+                                         h-full rounded-full" style="width: ${ waifu.endurance }%;"></div>
+                                    </div>
+                                    <span class="ml-2 text-white">${ waifu.endurance }</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Waifu Physical Attributes -->
+                    <div class="mt-4 flex flex-col">
+                        <h3 class="text-lg font-semibold text-[#00A8FF]">Physical Attributes</h3>
+                        <div class="flex justify-between items-center text-white">
+                            <h1 class="text-sm">Height</h1>
+                            <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">${ waifu.height } cm</div>
+                        </div>
+                        <div class="flex justify-between items-center text-white space-y-3">
+                            <h1 class="text-sm">Weight</h1>
+                            <div class=" px-2 py-1 bg-slate-900 rounded-md text-sm">${ waifu.weight } kg</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="card-rank-${waifu.id}" class="z-0   w-full absolute font-bold text-[#00A8FF] opacity-30 inset-0 flex items-center justify-center text-[24rem]">
+                    ${calculateRank(waifu.strength, waifu.speed, waifu.intelligence, waifu.potential,
+                        waifu.endurance)}
+                </div>
+            </div>`
+            });
+            innerHTML+= `</div>`;
+            containerElement.innerHTML = innerHTML;
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+    
+}
+window.addEventListener('DOMContentLoaded', async ()=> {
+    const loadingElement = document.getElementById("loadingOverlay");
+    loadingElement.style.display = 'flex';
+    await getData();
+    loadingElement.style.display = 'none';
+})
+```
+Kemudian, kita perlu memodifikasi template home.html . Kita perlu menambahkan ``{% load static %}`` pada bagian atas file tersebut setelah `` {% extends 'base.html' %}``.
+Selanjutnya di ujung bawah tepat sebelum ``  {% endblock content %}`` , kita harus membuat elemen script yang sourcenya mengacu kepada home.js  agar kita bisa menjalankan kode-kode yang ada di dalamnya. Caranya adalah dengan menambahkan ``<script src="{% static 'home.js' %}"></script>``. 
+
+Selain itu, ada hal yang perlu kita lakukan. Yaitu menambahkan id ke setiap elemen yang akan dirujuk di file home.js tersebut. Hal tersebut karena untuk merujuk ke elemen html tersebut, kita bisa menggunakan salah satu method pada DOM yaitu getElementById untuk merujuk ke elemen html tertentu berdasarkan idnya.
+
+Untuk memodifikasi tampilan elemen yang kita rujuk, apabila elemen tersebut berfungsi sebagai container, maka biasanya kita akan memodifikasi innerHTML nya dengan memodifikasi field innerHTML denggan men-assign value yang sesuai. Sementara itu, jika ingin memodifikasi text pada elemen, kita bisa memodifikasi field textContent dengan men-assign value yang sesuai. Apabila kita ingin memodifikasi gaya elemen tersebut, kita bisa mengakses field-field yang berada di field style dari objek elemen tersebut dan men-assign value yang sesuai.
+
+
 TUGAS 5
 
 deployment: https://waifu-collection.vercel.app/
