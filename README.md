@@ -5,6 +5,8 @@ NPM: 2206081465
 Kelas: PBP D
 
 TUGAS 6
+deployment dengan vercel: https://waifu-collection.vercel.app/
+deployment dengan pbp csui: http://isa-citra-tugas.pbp.cs.ui.ac.id
 
 1. Synchronous Programming adalah pendekatan pemrograman di mana kode dijalankan satu per satu secara hierarkis dari atas ke bawah. Itu artinya kode atau task harus menunggu kode atau task yang lebih awal untuk diselesaikan terlebih dahulu sebelum kode atau task ini dijalankan. Sementara itu, Asynchronous Programming adalah pendekatan pemrograman di mana kode dijalankan secara independen yang artinya jika kode pada baris atas belum selesai, maka kode yang berada di baris lebih bawah tidak perlu di-pending, tetapi bisa berjalan tanpa harus menunggu kode diatasnya untuk selesai. 
 
