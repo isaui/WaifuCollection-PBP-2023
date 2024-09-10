@@ -4,5 +4,4 @@ whitenoise
 psycopg2-binary
 requests
 urllib3
-pymysql
-django-environ
+dj-database-url

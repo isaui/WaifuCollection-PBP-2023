@@ -12,22 +12,20 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import environ # Tambahkan kode berikut
-import pymysql
+import dj_database_url
+
 # pymysql.install_as_MySQLdb()
 
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-^7fzp5ni#(+kv%@cni+d48kj!#5_r5347u5kmcg1l20j(ja2_6'
-PRODUCTION = env.bool('PRODUCTION', False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -93,18 +91,13 @@ WSGI_APPLICATION = 'WaifuCollection.wsgi.application'
 }"""
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default="postgres://postgres:eemZKYQNvCwZFMVzcuaEAhVsEneADTET@junction.proxy.rlwy.net:46351/railway",
+        conn_max_age=600
+    )
 }
 
-# Set database settings automatically using DATABASE_URL.
-if PRODUCTION:
-    DATABASES = {
-        'default': env.db('DATABASE_URL')
-    }
-    DATABASES["default"]["ATOMIC_REQUESTS"] = True
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
