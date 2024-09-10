@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'WaifuCollection.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgres://postgres:eemZKYQNvCwZFMVzcuaEAhVsEneADTET@junction.proxy.rlwy.net:46351/railway",
+        default="postgresql://postgres:eemZKYQNvCwZFMVzcuaEAhVsEneADTET@junction.proxy.rlwy.net:46351/railway",
         conn_max_age=600
     )
 }
