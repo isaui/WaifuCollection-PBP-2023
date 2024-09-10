@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 import environ # Tambahkan kode berikut
 import pymysql
-pymysql.install_as_MySQLdb()
+# pymysql.install_as_MySQLdb()
 
 
 
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'WaifuCollection.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'waifucollectionmysql_directlyto',
@@ -90,7 +90,15 @@ DATABASES = {
         'HOST': '95w.h.filess.io',
         'PORT': '3307',
     }
+}"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
 # Set database settings automatically using DATABASE_URL.
 if PRODUCTION:
     DATABASES = {
